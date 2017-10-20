@@ -17,7 +17,7 @@ index d89affb..0f2361f 100644
  
  %.8: %.8.adoc
 -	a2x -f manpage $<
-+	a2x --xsltproc-opts=--catalogs -L -f manpage $<
++	a2x --xsltproc-opts=--catalogs --xsltproc-opts=--nonet --xsltproc-opts=--novalid -L -f manpage $<
  
  # Shared data files
  install-data-hook:
