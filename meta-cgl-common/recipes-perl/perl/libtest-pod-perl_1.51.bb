@@ -1,7 +1,7 @@
 DESCRIPTION = "Test::Pod - check for POD errors in files"
 SECTION = "libs"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
+LICENSE = "Artistic-1.0 | GPL-1.0+"
+LIC_FILES_CHKSUM = "file://README;beginline=26;md5=ea81140c3f3b2937c6490fc732471cd0"
 HOMEPAGE = "https://github.com/perl-pod/test-pod/"
 BBCLASSEXTEND = "native"
 RDEPENDS_${PN} += " perl-module-test-more \
@@ -9,7 +9,7 @@ RDEPENDS_${PN} += " perl-module-test-more \
                     perl-module-pod-simple \
                     perl-module-test-builder-tester \
                     "
-PR = "r1"
+PR = "r2"
 
 SRC_URI ="http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Test-Pod-${PV}.tar.gz;name=test-pod-perl-${PV}"
 SRC_URI[test-pod-perl-1.51.md5sum] = "f806aa84de2f0c0fba48b3a5a8a4aecf"

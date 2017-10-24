@@ -1,9 +1,9 @@
 DESCRIPTION = "HTML Tagset bits."
 HOMEPAGE = "http://search.cpan.org/dist/HTML-Tagset/"
 SECTION = "libs"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-PR = "r3"
+LICENSE = "Artistic-1.0 | GPL-1.0+"
+LIC_FILES_CHKSUM = "file://README;beginline=60;md5=16ddda2d845a5546f615e6b122d1dbad"
+PR = "r4"
 
 SRC_URI = "http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/HTML-Tagset-${PV}.tar.gz"
 

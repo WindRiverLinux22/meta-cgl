@@ -1,9 +1,9 @@
 DESCRIPTION = "Perl extensions for IPv6"
 HOMEPAGE = "https://metacpan.org/release/Socket6"
 SECTION = "libs"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-PR = "r1"
+LICENSE = "BSD"
+LIC_FILES_CHKSUM = "file://README;beginline=31;md5=ad207d410de6d8ca6b4655469baa1ab4"
+PR = "r2"
 
 BBCLASSEXTEND = "native"
 
