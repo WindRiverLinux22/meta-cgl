@@ -88,6 +88,8 @@ FILES_${PN} += " ${datadir}/snmp                             \
 FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
 RDEPENDS_${PN} = "bash python libqb"
 
+SYSTEMD_AUTO_ENABLE = "disable"
+
 SYSTEMD_PACKAGES += "${PN}-remote"
 SYSTEMD_SERVICE_${PN} += "pacemaker.service crm_mon.service"
 SYSTEMD_SERVICE_${PN}-remote += "pacemaker_remote.service"
