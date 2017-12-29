@@ -1,10 +1,10 @@
-From 6bb056aa8359e33f9b6f8974e2cc8b518ca9fe96 Mon Sep 17 00:00:00 2001
+From f2ab529af7ab31d265dd3e9a53e074317982dffd Mon Sep 17 00:00:00 2001
 From: Li xin <lixin.fnst@cn.fujitsu.com>
-Date: Tue, 18 Aug 2015 12:34:32 +0900
+Date: Wed, 27 Dec 2017 05:20:45 +0000
 Subject: [PATCH] pacemaker: search header from STAGING_INCDIR to walkaround
  error
 
- ** -I/usr/include/ is unsafe for cross-compilation
+** -I/usr/include/ is unsafe for cross-compilation
 
  ... ...
 
@@ -15,24 +15,25 @@ Upstream-Status: pending
 
 Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
 Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
+Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
 ---
- configure.ac | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ configure.ac | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/configure.ac b/configure.ac
-index 08b4611..6fcd1aa 100644
+index 36ccb01..2eade3c 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -463,7 +463,8 @@ esac
- 
+@@ -483,6 +483,9 @@ esac
  dnl Eventually remove this
  if test "$cross_compiling" != "yes"; then
--   CPPFLAGS="$CPPFLAGS -I${prefix}/include/heartbeat"
+    CPPFLAGS="$CPPFLAGS -I${prefix}/include/heartbeat"
++else
 +   CFLAGS="$CFLAGS -I${STAGING_INCDIR}/heartbeat"
 +   CPPFLAGS="$CPPFLAGS -I${STAGING_INCDIR}/heartbeat"
  fi
  
  AC_SUBST(INIT_EXT)
 -- 
-1.8.4.2
+2.11.0
 

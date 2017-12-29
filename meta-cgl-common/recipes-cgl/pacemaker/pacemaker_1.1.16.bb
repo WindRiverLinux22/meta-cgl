@@ -54,6 +54,7 @@ do_install_append() {
     find ${D} -name "*.pyc" -exec rm {} \;
     rm -rf ${D}/${libdir}/service_crm.so
 
+    rm -rf ${D}${localstatedir}/lib/heartbeat
     rm -rf ${D}${localstatedir}/run
 }
 
@@ -82,7 +83,7 @@ RDEPENDS_${PN}-remote += "libqb bash"
 FILES_${PN} += " ${datadir}/snmp                             \
                  ${libdir}/corosync/lcrso/pacemaker.lcrso    \
                  ${libdir}/${PYTHON_DIR}/dist-packages/cts/  \
-                 ${nonarch_libdir}/ocf/resource.d/ \
+                 ${libdir}/ocf/resource.d/ \
                  ${libdir}/${PYTHON_DIR}/site-packages \
                "
 FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
