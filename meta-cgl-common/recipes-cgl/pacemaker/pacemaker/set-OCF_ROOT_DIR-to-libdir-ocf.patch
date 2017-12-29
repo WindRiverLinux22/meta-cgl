@@ -1,0 +1,30 @@
+From 24c1ddc572df59061c1f4fcec6e764dcb3edac80 Mon Sep 17 00:00:00 2001
+From: Mingli Yu <Mingli.Yu@windriver.com>
+Date: Wed, 27 Dec 2017 07:14:21 +0000
+Subject: [PATCH] pacemaker: set OCF_ROOT_DIR to $libdir/ocf
+
+* Set the default OCF_ROOT_DIR to $libdir/ocf
+  to make the resource agents components more
+  compatible
+
+Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 2eade3c..ba290cc 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1152,7 +1152,7 @@ AC_SUBST(HA_VARLIBHBDIR)
+ 
+ AC_DEFINE_UNQUOTED(UUID_FILE,"$localstatedir/lib/heartbeat/hb_uuid", Location of Heartbeat's UUID file)
+ 
+-OCF_ROOT_DIR=`try_extract_header_define $GLUE_HEADER OCF_ROOT_DIR /usr/lib/ocf`
++OCF_ROOT_DIR=`try_extract_header_define $GLUE_HEADER OCF_ROOT_DIR $libdir/ocf`
+ if test "X$OCF_ROOT_DIR" = X; then
+   AC_MSG_ERROR(Could not locate OCF directory)
+ fi
+-- 
+2.11.0
+
