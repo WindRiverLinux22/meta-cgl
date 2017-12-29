@@ -86,7 +86,7 @@ FILES_${PN} += " ${datadir}/snmp                             \
                  ${libdir}/${PYTHON_DIR}/site-packages \
                "
 FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
-RDEPENDS_${PN} = "bash python libqb"
+RDEPENDS_${PN} = "bash python libqb ${PN}-cli-utils"
 
 SYSTEMD_AUTO_ENABLE = "disable"
 
