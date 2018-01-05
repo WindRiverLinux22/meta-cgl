@@ -32,6 +32,8 @@ inherit autotools-brokensep pkgconfig systemd python-dir useradd
 
 S="${WORKDIR}/pacemaker-Pacemaker-${PV}"
 
+CLEANBROKEN = "1"
+
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
 PACKAGECONFIG[systemd] = "--enable-systemd,--disable-systemd,systemd"
 PACKAGECONFIG[libesmtp] = "--with-esmtp=yes,--with-esmtp=no,libesmtp"
