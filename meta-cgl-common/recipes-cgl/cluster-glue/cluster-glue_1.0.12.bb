@@ -38,6 +38,7 @@ PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},
 EXTRA_OECONF = "--with-daemon-user=${HA_USER} \
                 --with-daemon-group=${HA_GROUP} \
                 --disable-fatal-warnings \
+                --with-ocf-root=${libdir}/ocf \
                "
 
 CACHED_CONFIGUREVARS="ac_cv_path_XML2CONFIG=0"
@@ -135,3 +136,4 @@ RDEPENDS_${PN} += "perl"
 RDEPENDS_${PN}-plugin-stonith2 += "bash"
 RDEPENDS_${PN}-plugin-stonith-external += "bash python perl"
 RDEPENDS_${PN}-plugin-stonith2-ribcl += "python"
+RDEPENDS_${PN}-lrmtest += "${VIRTUAL-RUNTIME_getopt} ${PN}-plugin-raexec"
