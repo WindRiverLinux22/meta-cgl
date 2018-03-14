@@ -22,5 +22,3 @@ SRC_URI[libwww-perl-6.05.sha256sum] = "7b25799ff7eec18e8e4e97dc0cad7b2a5b433b50b
 S = "${WORKDIR}/libwww-perl-${PV}"
 
 inherit cpan
-
-PACKAGE_ARCH = "all"

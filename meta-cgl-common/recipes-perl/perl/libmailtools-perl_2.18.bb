@@ -24,5 +24,3 @@ SRC_URI[sha256sum] = "dfee9e770257371112f20d978e637759e81bc4f19e97b083585c71ecab
 S = "${WORKDIR}/MailTools-${PV}"
 
 inherit cpan
-
-PACKAGE_ARCH = "all"

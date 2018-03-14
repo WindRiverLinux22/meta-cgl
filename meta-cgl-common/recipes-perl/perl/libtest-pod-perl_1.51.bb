@@ -17,5 +17,3 @@ SRC_URI[test-pod-perl-1.51.sha256sum] = "c1a1d3cedf4a579e3aad89c36f9878a8542b665
 S = "${WORKDIR}/Test-Pod-${PV}"
 
 inherit cpan
-
-PACKAGE_ARCH = "all"
