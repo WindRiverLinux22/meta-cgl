@@ -1,12 +1,16 @@
-fix header defs lookup
+From 6a8ec0557194fb5071503de95f2160361ae3427e Mon Sep 17 00:00:00 2001
+From: Bian Naimeng <biannm@cn.fujitsu.com>
+Date: Tue, 1 Apr 2014 16:20:39 +0200
+Subject: [PATCH] fix header defs lookup
 
 Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+
 ---
  configure.ac | 5 ++---
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 3326b53..8b5706a 100644
+index ca30182..83a698d 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -140,9 +140,8 @@ extract_header_define() {
@@ -21,6 +25,3 @@ index 3326b53..8b5706a 100644
  	  AC_MSG_RESULT($value)
  	  printf $value
  	  rm -f ${Cfile}.c ${Cfile}
--- 
-1.8.3.1
-
