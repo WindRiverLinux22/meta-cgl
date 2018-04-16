@@ -1,18 +1,19 @@
-From 1a84908d57291a82e35eaa9369144a398e2265bf Mon Sep 17 00:00:00 2001
+From 9236fa746d43adb098c2946e72e8b29ffbc78865 Mon Sep 17 00:00:00 2001
 From: Bian Naimeng <biannm@cn.fujitsu.com>
 Date: Fri, 3 Jul 2015 16:30:25 +0900
-Subject: [PATCH 4/4] pacemaker: fix header defs lookup
+Subject: [PATCH] pacemaker: fix header defs lookup
 
 Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+
 ---
  configure.ac | 5 ++---
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index cb47011..d37eccf 100644
+index 5d442a5..1429b01 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -141,9 +141,8 @@ extract_header_define() {
+@@ -147,9 +147,8 @@ extract_header_define() {
  	  Cfile=$srcdir/extract_define.$2.${$}
  	  printf "#include <stdio.h>\n" > ${Cfile}.c
  	  printf "#include <%s>\n" $1 >> ${Cfile}.c
@@ -24,6 +25,3 @@ index cb47011..d37eccf 100644
  	  AC_MSG_RESULT($value)
  	  printf $value
  	  rm -rf ${Cfile}.c ${Cfile} ${Cfile}.dSYM ${Cfile}.gcno
--- 
-1.8.4.2
-

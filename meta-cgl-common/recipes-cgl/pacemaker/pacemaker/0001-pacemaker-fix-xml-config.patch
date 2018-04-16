@@ -1,18 +1,19 @@
-From a6b792b9abb26e810ad9ca11be31998c7e97db6c Mon Sep 17 00:00:00 2001
+From a55e235f56bc6e894e79fa200c39678e06ef985e Mon Sep 17 00:00:00 2001
 From: Bian Naimeng <biannm@cn.fujitsu.com>
 Date: Fri, 3 Jul 2015 15:48:58 +0900
-Subject: [PATCH 1/2] pacemaker: fix xml config
+Subject: [PATCH] pacemaker: fix xml config
 
 Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+
 ---
  configure.ac | 17 ++++++-----------
  1 file changed, 6 insertions(+), 11 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 03f543d..25af918 100644
+index 7195f9b..5e420f2 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -533,7 +533,6 @@ AC_PATH_PROGS(TAR, tar)
+@@ -557,7 +557,6 @@ AC_PATH_PROGS(TAR, tar)
  AC_PATH_PROGS(MD5, md5)
  AC_PATH_PROGS(TEST, test)
  AC_PATH_PROGS(PKGCONFIG, pkg-config)
@@ -20,7 +21,7 @@ index 03f543d..25af918 100644
  AC_PATH_PROGS(VALGRIND_BIN, valgrind, /usr/bin/valgrind)
  AC_DEFINE_UNQUOTED(VALGRIND_BIN, "$VALGRIND_BIN", Valgrind command)
  
-@@ -779,17 +778,13 @@ dnl AC_CHECK_HEADERS(netinet/icmp6.h)
+@@ -807,17 +806,13 @@ dnl AC_CHECK_HEADERS(netinet/icmp6.h)
  dnl AC_CHECK_HEADERS(netinet/ip6.h)
  dnl AC_CHECK_HEADERS(netinet/ip_icmp.h)
  
@@ -44,6 +45,3 @@ index 03f543d..25af918 100644
  
  AC_CHECK_HEADERS(libxml/xpath.h)
  AC_CHECK_HEADERS(libxslt/xslt.h)
--- 
-1.8.4.2
-

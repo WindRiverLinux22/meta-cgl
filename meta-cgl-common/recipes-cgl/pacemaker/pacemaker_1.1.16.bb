@@ -20,7 +20,6 @@ SRC_URI = "https://github.com/ClusterLabs/${BPN}/archive/Pacemaker-${PV}.zip \
            file://0004-pacemaker-do-not-build-help.patch \
            file://0005-pacemaker-do-not-execute-target-program-while-cross-.patch \
            file://0006-pacemaker-do-not-use-libgnutls-config.patch \
-           file://fix_missing_qb_array.patch \
            file://set-OCF_ROOT_DIR-to-libdir-ocf.patch \
            file://volatiles \
            file://tmpfiles \

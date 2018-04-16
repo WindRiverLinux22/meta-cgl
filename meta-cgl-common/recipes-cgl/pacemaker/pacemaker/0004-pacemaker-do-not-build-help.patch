@@ -1,18 +1,19 @@
-From cba9add61c72c734af8a7a16ad33e62457413ed8 Mon Sep 17 00:00:00 2001
+From cda171512fc8dc0aa385290e1f7644ff222e5f18 Mon Sep 17 00:00:00 2001
 From: Bian Naimeng <biannm@cn.fujitsu.com>
 Date: Fri, 3 Jul 2015 17:27:52 +0900
-Subject: [PATCH 5/5] pacemaker: do not build help
+Subject: [PATCH] pacemaker: do not build help
 
 Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+
 ---
  configure.ac | 5 +----
  1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index d37eccf..3c08524 100644
+index 1429b01..e930e33 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -549,10 +549,7 @@ if test x"${MAKE}" = x""; then
+@@ -574,10 +574,7 @@ if test x"${MAKE}" = x""; then
     AC_MSG_ERROR(You need (g)make installed in order to build ${PACKAGE})
  fi
  
@@ -24,6 +25,3 @@ index d37eccf..3c08524 100644
  
  MANPAGE_XSLT=""
  if test x"${XSLTPROC}" != x""; then
--- 
-1.8.4.2
-
