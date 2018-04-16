@@ -1,3 +1,8 @@
+From 11704324287f9f552e1524f4a680b8744abd0361 Mon Sep 17 00:00:00 2001
+From: Kai Kang <kai.kang@windriver.com>
+Date: Fri, 9 Jun 2017 11:04:56 +0800
+Subject: [PATCH] crmsh: disable network access for xsltproc when building
+
 Upstream-Status: Inappropriate [embedded specific]
 
 Pass option '--catalogs' to xsltproc via a2x to avoid network access.
@@ -7,12 +12,16 @@ Add option '--install-lib' of python setup.py to install python libraries to
 right place.
 
 Signed-off-by: Kai Kang <kai.kang@windriver.com>
+
 ---
+ Makefile.am | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
 diff --git a/Makefile.am b/Makefile.am
-index d89affb..0f2361f 100644
+index 1ffe9c3..3d045e7 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -47,7 +47,7 @@ endif
+@@ -45,7 +45,7 @@ endif
  	$(ASCIIDOC) --unsafe --backend=xhtml11 $<
  
  %.8: %.8.adoc
@@ -21,11 +30,11 @@ index d89affb..0f2361f 100644
  
  # Shared data files
  install-data-hook:
-@@ -79,6 +79,7 @@ install-exec-local:
- 	-mkdir -p $(DESTDIR)$(pkgpythondir)
+@@ -73,6 +73,7 @@ install-exec-local:
  	$(PYTHON) $(srcdir)/setup.py install \
+ 		--root $(DESTDIR)/// \
  		$(python_prefix) \
 +		--install-lib $(pythondir) \
  		--record $(DESTDIR)$(pkgpythondir)/install_files.txt \
  		--verbose
- 	$(INSTALL) -d -m 770 $(DESTDIR)/$(CRM_CACHE_DIR)
+ 	$(INSTALL) -d -m 770 $(DESTDIR)$(CRM_CACHE_DIR)
