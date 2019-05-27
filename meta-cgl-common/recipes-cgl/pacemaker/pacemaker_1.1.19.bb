@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=19a64afd3a35d044a80579d7aafc30ff"
 
 DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python-native"
 
-SRC_URI = "https://github.com/ClusterLabs/${BPN}/archive/Pacemaker-${PV}.zip \
+SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=1.1 \
            file://0001-pacemaker-fix-xml-config.patch \
            file://0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch \
            file://0003-pacemaker-fix-header-defs-lookup.patch \
@@ -28,12 +28,11 @@ SRC_URI = "https://github.com/ClusterLabs/${BPN}/archive/Pacemaker-${PV}.zip \
 
 SRC_URI_append_libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc.patch"
 
-SRC_URI[md5sum] = "deb7017c5a9d3f39895d9ea2c34bc8eb"
-SRC_URI[sha256sum] = "6e222046487c2dc6ae61d49089ecbf6a0bcb495e8cdcb76d115fd987d0df8f7f"
+SRCREV = "c3c624ea3d98a74a8a287671a156db126c99a7bb"
 
 inherit autotools-brokensep pkgconfig systemd python-dir useradd
 
-S="${WORKDIR}/pacemaker-Pacemaker-${PV}"
+S = "${WORKDIR}/git"
 
 CLEANBROKEN = "1"
 
