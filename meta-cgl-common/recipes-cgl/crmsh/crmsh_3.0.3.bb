@@ -13,12 +13,12 @@ DEPENDS = "asciidoc-native \
            "
 RDEPENDS_${PN} = "pacemaker python-lxml gawk"
 
-SRC_URI = "https://github.com/ClusterLabs/crmsh/archive/${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
+S = "${WORKDIR}/git"
+SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=crmsh-3.0 \
            file://tweaks_for_build.patch \
           "
 
-SRC_URI[md5sum] = "563b463155a652820c8d1319418e88b7"
-SRC_URI[sha256sum] = "364fadb0d0c9619676e10bb75f4ea833a49019aa77ddb26229bc9d1c435585c0"
+SRCREV = "41845ca5511b844593cf25ae4eb7f307aa78c5be"
 
 inherit autotools-brokensep distutils-base
 
