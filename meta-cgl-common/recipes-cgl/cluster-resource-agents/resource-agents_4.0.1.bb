@@ -44,6 +44,11 @@ RDEPENDS_${PN} += "bash perl lvm2 \
 
 inherit autotools systemd pkgconfig
 
+CACHED_CONFIGUREVARS += " \
+    ac_cv_path_GREP=grep \
+    ac_cv_path_TEST=test \
+"
+
 EXTRA_OECONF += "--disable-fatal-warnings \
                  --with-rsctmpdir=/var/run/heartbeat/rsctmp"
 
