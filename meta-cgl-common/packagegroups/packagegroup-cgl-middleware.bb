@@ -23,7 +23,6 @@ MULTIPATH_TOOLS = " \
     "
 
 RDEPENDS_packagegroup-cgl-middleware = "\
-    ipsec-tools \
     net-snmp-server \
     net-snmp-client \
     net-snmp-libs \
@@ -51,7 +50,6 @@ RDEPENDS_packagegroup-cgl-middleware = "\
     ifenslave \
     drbd-utils \
     openl2tp \
-    umip \
     dmidecode \
     "
 
