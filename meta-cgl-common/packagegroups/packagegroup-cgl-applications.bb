@@ -46,9 +46,8 @@ RDEPENDS_${PN} = " \
     samhain-server \
     audit \
     crash \
-    pam-passwdqc \
-    libpam \
     makedumpfile \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam-passwdqc libpam', '', d)} \
     "
 
 LTTNG ?= "\
