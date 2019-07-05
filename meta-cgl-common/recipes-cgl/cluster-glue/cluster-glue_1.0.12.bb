@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
 DEPENDS = "libxml2 libtool glib-2.0 bzip2 util-linux net-snmp openhpi"
 
 SRC_URI = " \
-    http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
+    git://github.com/ClusterLabs/${BPN}.git \
     file://0001-don-t-compile-doc-and-Error-Fix.patch \
     file://0001-ribcl.py.in-Warning-Fix.patch \
     file://volatiles \
@@ -19,8 +19,7 @@ SRC_URI = " \
 "
 SRC_URI_append_libc-uclibc = " file://kill-stack-protector.patch"
 
-SRC_URI[md5sum] = "ec620466d6f23affa3b074b72bca7870"
-SRC_URI[sha256sum] = "feba102fa1e24b6be2005089ebe362b82d6567af60005cf371679b1b44ec503f"
+SRCREV = "1bc77825c0cfb0c80f9c82a061af7ede68676cb4"
 
 inherit autotools useradd pkgconfig systemd
 
@@ -30,7 +29,7 @@ SYSTEMD_AUTO_ENABLE = "disable"
 HA_USER = "hacluster"
 HA_GROUP = "haclient"
 
-S = "${WORKDIR}/Reusable-Cluster-Components-glue--glue-${PV}"
+S = "${WORKDIR}/git"
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
 PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir,systemd"
