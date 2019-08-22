@@ -11,7 +11,7 @@ DEPENDS = "asciidoc-native \
            libxslt-native \
            python-setuptools-native \
            "
-RDEPENDS_${PN} = "pacemaker python-lxml gawk"
+RDEPENDS_${PN} = "pacemaker python-lxml gawk bash"
 
 S = "${WORKDIR}/git"
 SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=crmsh-3.0 \
