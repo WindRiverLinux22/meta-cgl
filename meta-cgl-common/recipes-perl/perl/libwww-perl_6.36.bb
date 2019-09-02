@@ -16,8 +16,8 @@ BBCLASSEXTEND = "native"
 PR = "r2"
 
 SRC_URI = "https://cpan.metacpan.org/authors/id/E/ET/ETHER/libwww-perl-${PV}.tar.gz;name=libwww-perl-${PV}"
-SRC_URI[libwww-perl-6.35.md5sum] = "19cd0f55f61359c973caa9301ec405bd"
-SRC_URI[libwww-perl-6.35.sha256sum] = "dda2578d7b32152c4afce834761a61d117de286c705a9f7972c7ac6032ca5953"
+SRC_URI[libwww-perl-6.36.md5sum] = "20062717e4084d2f56d84c7ab4c91ec1"
+SRC_URI[libwww-perl-6.36.sha256sum] = "75c034ab4b37f4b9506dc644300697505582cf9545bcf2e2079e7263f675290a"
 
 S = "${WORKDIR}/libwww-perl-${PV}"
 
