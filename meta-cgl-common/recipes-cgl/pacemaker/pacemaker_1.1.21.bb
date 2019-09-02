@@ -9,7 +9,7 @@ check resource health."
 HOMEPAGE = "http://www.clusterlabs.org"
 
 LICENSE = "GPLv2+ & LGPLv2.1+"
-LIC_FILES_CHKSUM = "file://COPYING;md5=19a64afd3a35d044a80579d7aafc30ff"
+LIC_FILES_CHKSUM = "file://COPYING;md5=000212f361a81b100d9d0f0435040663"
 
 DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python-native"
 
@@ -28,11 +28,13 @@ SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=1.1 \
 
 SRC_URI_append_libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc.patch"
 
-SRCREV = "c3c624ea3d98a74a8a287671a156db126c99a7bb"
+SRCREV = "f14e36fd4336874705b34266c7cddbe12119106c"
 
 inherit autotools-brokensep pkgconfig systemd python-dir useradd
 
 S = "${WORKDIR}/git"
+
+UPSTREAM_CHECK_GITTAGREGEX = "Pacemaker-(?P<pver>\d+(\.\d+)+)"
 
 CLEANBROKEN = "1"
 
