@@ -30,7 +30,7 @@ SRC_URI_append_libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc
 
 SRCREV = "f14e36fd4336874705b34266c7cddbe12119106c"
 
-inherit autotools-brokensep pkgconfig systemd python-dir useradd
+inherit autotools-brokensep pkgconfig systemd python3-dir useradd
 
 S = "${WORKDIR}/git"
 
