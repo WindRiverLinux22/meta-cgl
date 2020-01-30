@@ -137,6 +137,6 @@ FILES_${PN}-lrmtest = "${datadir}/cluster-glue/lrmtest/"
 
 RDEPENDS_${PN} += "perl"
 RDEPENDS_${PN}-plugin-stonith2 += "bash"
-RDEPENDS_${PN}-plugin-stonith-external += "bash python perl"
-RDEPENDS_${PN}-plugin-stonith2-ribcl += "python"
+RDEPENDS_${PN}-plugin-stonith-external += "bash python3-core perl"
+RDEPENDS_${PN}-plugin-stonith2-ribcl += "python3-core"
 RDEPENDS_${PN}-lrmtest += "${VIRTUAL-RUNTIME_getopt} ${PN}-plugin-raexec"
