@@ -20,7 +20,7 @@ SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=crmsh-3.0 \
 
 SRCREV = "41845ca5511b844593cf25ae4eb7f307aa78c5be"
 
-inherit autotools-brokensep distutils-base
+inherit autotools-brokensep distutils3-base
 
 export HOST_SYS
 export BUILD_SYS
