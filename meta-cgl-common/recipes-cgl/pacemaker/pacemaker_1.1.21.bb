@@ -11,7 +11,7 @@ HOMEPAGE = "http://www.clusterlabs.org"
 LICENSE = "GPLv2+ & LGPLv2.1+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=000212f361a81b100d9d0f0435040663"
 
-DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python-native"
+DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python3-native"
 
 SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=1.1 \
            file://0001-pacemaker-fix-xml-config.patch \
@@ -95,7 +95,7 @@ FILES_${PN} += " ${datadir}/snmp                             \
                  ${libdir}/${PYTHON_DIR}/site-packages \
                "
 FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
-RDEPENDS_${PN} = "bash python perl libqb ${PN}-cli-utils"
+RDEPENDS_${PN} = "bash python3-core perl libqb ${PN}-cli-utils"
 
 SYSTEMD_AUTO_ENABLE = "disable"
 
