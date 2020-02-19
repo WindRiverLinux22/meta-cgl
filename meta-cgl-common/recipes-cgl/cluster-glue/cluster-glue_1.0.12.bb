@@ -4,8 +4,8 @@ is not the cluster messaging layer (Heartbeat), nor the cluster resource manager
 (Pacemaker), nor a Resource Agent."
 HOMEPAGE = "http://clusterlabs.org/"
 LICENSE = "GPLv2 & LGPLv2.1"
-LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
-                    file://COPYING.LIB;md5=243b725d71bb5df4a1e5920b344b86ad \
+LIC_FILES_CHKSUM = "file://COPYING;md5=b70d30a00a451e19d7449d7465d02601 \
+                    file://COPYING.LIB;md5=c386bfabdebabbdc1f28e9fde4f4df6d \
 "
 
 DEPENDS = "libxml2 libtool glib-2.0 bzip2 util-linux net-snmp openhpi"
@@ -14,14 +14,15 @@ SRC_URI = " \
     git://github.com/ClusterLabs/${BPN}.git \
     file://0001-don-t-compile-doc-and-Error-Fix.patch \
     file://0001-ribcl.py.in-Warning-Fix.patch \
+    file://0001-Update-for-python3.patch \
     file://volatiles \
     file://tmpfiles \
 "
 SRC_URI_append_libc-uclibc = " file://kill-stack-protector.patch"
 
-SRCREV = "1bc77825c0cfb0c80f9c82a061af7ede68676cb4"
+SRCREV = "fd5a3befacd23d056a72cacd2b8ad6bba498e56b"
 
-inherit autotools useradd pkgconfig systemd
+inherit autotools useradd pkgconfig systemd multilib_script multilib_header
 
 SYSTEMD_SERVICE_${PN} = "logd.service"
 SYSTEMD_AUTO_ENABLE = "disable"
@@ -30,6 +31,7 @@ HA_USER = "hacluster"
 HA_GROUP = "haclient"
 
 S = "${WORKDIR}/git"
+PV = "1.0.12+git${SRCPV}"
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
 PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir,systemd"
@@ -48,6 +50,8 @@ USERADD_PARAM_${PN} = "--home-dir=${localstatedir}/lib/heartbeat/cores/${HA_USER
                       "
 GROUPADD_PARAM_${PN} = "-r ${HA_GROUP}"
 
+MULTILIB_SCRIPTS = "${PN}:${sbindir}/cibsecret"
+
 do_configure_prepend() {
     ln -sf ${PKG_CONFIG_SYSROOT_DIR}/usr/include/libxml2/libxml ${PKG_CONFIG_SYSROOT_DIR}/usr/include/libxml
 }
@@ -57,6 +61,8 @@ do_install_append() {
 	install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/04_cluster-glue
 	install -d ${D}${sysconfdir}/tmpfiles.d
 	install -m 0644 ${WORKDIR}/tmpfiles ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
+
+    oe_multilib_header heartbeat/glue_config.h
 }
 
 pkg_postinst_${PN} () {
@@ -86,9 +92,9 @@ PACKAGES =+ "\
 	 ${PN}-plugin-interfacemgr-dbg \
 	 ${PN}-plugin-interfacemgr-staticdev \
 	 ${PN}-lrmtest \
-         ${PN}-plugin-compress \
-         ${PN}-plugin-compress-dbg \
-         ${PN}-plugin-compress-staticdev \
+     ${PN}-plugin-compress \
+     ${PN}-plugin-compress-dbg \
+     ${PN}-plugin-compress-staticdev \
 	 "
 
 FILES_${PN} = "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir} ${datadir}/cluster-glue/*sh ${datadir}/cluster-glue/*pl\
