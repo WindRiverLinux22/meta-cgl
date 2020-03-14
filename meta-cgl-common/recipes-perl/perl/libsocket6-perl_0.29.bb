@@ -2,7 +2,7 @@ DESCRIPTION = "Perl extensions for IPv6"
 HOMEPAGE = "https://metacpan.org/release/Socket6"
 SECTION = "libs"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://README;beginline=31;md5=aa15b0e3744ac40eaada8738eccd24df"
+LIC_FILES_CHKSUM = "file://README;beginline=43;md5=b2bfcdf2de2e951c8e4ed544e942d8e1"
 PR = "r2"
 
 BBCLASSEXTEND = "native"
@@ -10,11 +10,10 @@ BBCLASSEXTEND = "native"
 CFLAGS += "-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE"
 BUILD_CFLAGS += "-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE"
 
-SRC_URI = "http://search.cpan.org/CPAN/authors/id/U/UM/UMEMOTO/Socket6-${PV}.tar.gz;name=socket6-perl-${PV} \
+SRC_URI = "https://cpan.metacpan.org/authors/id/U/UM/UMEMOTO/Socket6-${PV}.tar.gz;name=socket6-perl-${PV} \
            file://0001-socket6-perl-fix-configure-error.patch \
 "
-SRC_URI[socket6-perl-0.28.md5sum] = "aa8489135a3dbcec6233396e1aeb043b"
-SRC_URI[socket6-perl-0.28.sha256sum] = "bfd49ab99f3197c99285fed4683c4edc06277c1e4453f593e694d7bff0974586"
+SRC_URI[socket6-perl-0.29.sha256sum] = "468915fa3a04dcf6574fc957eff495915e24569434970c91ee8e4e1459fc9114"
 
 S = "${WORKDIR}/Socket6-${PV}"
 
