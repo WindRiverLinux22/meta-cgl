@@ -10,10 +10,10 @@ Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index ca30182..83a698d 100644
+index 066d126f..32a76169 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -140,9 +140,8 @@ extract_header_define() {
+@@ -160,9 +160,8 @@ extract_header_define() {
  	  Cfile=$srcdir/extract_define.$2.${$}
  	  printf "#include <stdio.h>\n" > ${Cfile}.c
  	  printf "#include <%s>\n" $1 >> ${Cfile}.c

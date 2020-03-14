@@ -4,21 +4,23 @@ Date: Tue, 30 Jun 2015 16:42:48 +0800
 Subject: [PATCH] disable doc build
 
 Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
-
 ---
  Makefile.am | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Makefile.am b/Makefile.am
-index 1769c6e..d66b2ae 100644
+index 0f2e5dcf..65619424 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -37,7 +37,7 @@ RGMANAGER = with
+@@ -39,7 +39,7 @@ RGMANAGER = with
  endif
  
  if BUILD_LINUX_HA
--SUBDIRS	+= include heartbeat tools ldirectord doc
-+SUBDIRS	+= include heartbeat tools ldirectord
+-SUBDIRS	+= include heartbeat tools ldirectord doc systemd
++SUBDIRS	+= include heartbeat tools ldirectord systemd
  LINUX_HA = without
  else
  LINUX_HA = with
+-- 
+2.23.0
+

@@ -14,16 +14,16 @@ LICENSE_${PN}-extra = "GPLv3"
 LICENSE_${PN}-extra-dbg = "GPLv3"
 LICENSE_ldirectord = "GPLv2+"
 
-SRC_URI = "https://codeload.github.com/ClusterLabs/resource-agents/tar.gz/v${PV};downloadfilename=${BPN}-${PV}.tar.gz \
+SRC_URI = "git://github.com/ClusterLabs/resource-agents \
            file://01-disable-doc-build.patch \
            file://02-set-OCF_ROOT_DIR-to-libdir-ocf.patch \
            file://03-fix-header-defs-lookup.patch \
            file://fix-install-sh-not-found.patch \
-           file://fs.sh-fix-builds-when-srcdir-and-builddir-are-sepera.patch \
           "
 
-SRC_URI[md5sum] = "8530431861e659d4ce2f04afcc4efc03"
-SRC_URI[sha256sum] = "863f83c724bad3a8bcff12b9c8712406c43e010041868826cad7b78fd8cfb9fb"
+SRCREV = "fee181320547365d7f8c88cca2b32801412b933d" 
+
+S="${WORKDIR}/git"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
                     file://COPYING.LGPL;md5=4fbd65380cdd255951079008b364516c \
@@ -47,6 +47,8 @@ inherit autotools systemd pkgconfig
 CACHED_CONFIGUREVARS += " \
     ac_cv_path_GREP=grep \
     ac_cv_path_TEST=test \
+    ac_cv_path_BASH_SHELL=/bin/bash \
+    ac_cv_path_PYTHON="/usr/bin/env python3" \
 "
 
 EXTRA_OECONF += "--disable-fatal-warnings \

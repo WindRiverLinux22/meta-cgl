@@ -10,10 +10,10 @@ Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/configure.ac b/configure.ac
-index 3bb0b7d..ca30182 100644
+index 1eb65cf3..066d126f 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -405,7 +405,7 @@ dnl Variables needed for substitution
+@@ -425,7 +425,7 @@ dnl Variables needed for substitution
  AC_CHECK_HEADERS(heartbeat/glue_config.h)
  
  if test "$ac_cv_header_heartbeat_glue_config_h" = "yes"; then
