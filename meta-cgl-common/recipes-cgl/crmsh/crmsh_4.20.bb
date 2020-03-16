@@ -14,13 +14,13 @@ DEPENDS = "asciidoc-native \
 RDEPENDS_${PN} = "pacemaker python-lxml gawk bash"
 
 S = "${WORKDIR}/git"
-SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=crmsh-3.0 \
+SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
            file://tweaks_for_build.patch \
           "
 
-SRCREV = "41845ca5511b844593cf25ae4eb7f307aa78c5be"
+SRCREV = "d10d2fbdd1b357500387bebb432c68e88748526b"
 
-inherit autotools-brokensep distutils3-base
+inherit autotools-brokensep setuptools3
 
 export HOST_SYS
 export BUILD_SYS
