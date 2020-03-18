@@ -7,39 +7,33 @@ FreeBSD, NetBSD, Linux, and Mac OS X."
 
 HOMEPAGE = "http://ftp.racoon2.wide.ad.jp/pub/racoon2/"
 
-DEPENDS = "${@bb.utils.contains('DISTRO_FEATURES', 'krb5', 'krb5', '', d)} libpcap openssl bison flex-native util-linux"
+DEPENDS = "${@bb.utils.contains('DISTRO_FEATURES', 'krb5', 'krb5', '', d)} libpcap openssl bison flex-native util-linux bison-native"
 RDEPENDS_${PN} += "perl"
 
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=99a60756441098855c538fe86f859afe"
 
-SRC_URI = "http://ftp.racoon2.wide.ad.jp/pub/${PN}/${BPN}-${PV}.tgz \
-           file://racoon2-configure-memcmp.patch \
-           file://racoon2-correct-openssl-include-path.patch \
-           file://racoon2-DESTDIR.patch \
-           file://racoon2-disable-hard-limit-timer.patch \
-           file://racoon2-fix-rekeying-reply.patch \
-           file://racoon2-fix-sadb_msg_seq-collision.patch \
-           file://racoon2-fix-target-perl-path-to-generate-RPM.patch \
-           file://racoon2-fwrite-return-value.patch \
-           file://racoon2-fix-configure-error.patch \
-           file://racoon2-Add-Value-to-HAVE_NSSWITCH_CONF.patch \
-           file://racoon2-Remove-INSTALL_OPTS.patch \
-           file://racoon2-iked-needs-libcrypto.patch \
-           file://racoon2-removed-conflicting-prototypes.patch \
-           file://racoon2-iked-initscript.patch \
-           file://racoon2-kinkd-initscript.patch \
-           file://racoon2-spmd-initscript.patch \
-           file://racoon2-remove-deprecated-do-clause.patch \
-           file://racoon2-configure.in-remove-redundant-macros.patch \
-           file://racoon2-reenable-the-ipv6-check.patch \
-           file://racoon2-fix-hardcoded-sysconfdir.patch \
-           file://racoon2-configure-autoheader.patch \
+SRC_URI = "git://github.com/zoulasc/racoon2 \
+           file://0001-Add-DESTDIR-to-install-commands.patch \
+           file://0002-Enable-turning-of-kinkd-and-iked.patch \
+           file://0003-Replace-perl_bindir-with-usr-bin-env-perl.patch \
+           file://0004-racoon2-disable-hard-limit-timer.patch \
+           file://0005-racoon2-fix-rekeying-reply.patch \
+           file://0006-racoon2-fix-sadb_msg_seq-collision.patch \
+           file://0007-racoon2-fwrite-return-value.patch \
+           file://0008-racoon2-iked-needs-libcrypto.patch \
+           file://0009-racoon2-iked-initscript.patch \
+           file://0010-racoon2-kinkd-initscript.patch \
+           file://0011-racoon2-spmd-initscript.patch \
+           file://0012-racoon2-remove-deprecated-do-clause.patch \
+           file://0013-racoon2-fix-hardcoded-sysconfdir.patch \
            file://volatiles.99_racoon2 \
            file://iked.service \
            file://spmd.service \
           "
 
+SRCREV="7b68950328454b0e91ba24698c10c4a790705cc1"
+S= "${WORKDIR}/git" 
 SRC_URI[md5sum] = "2fa33abff1ccd6fc22876a23db77aaa8"
 SRC_URI[sha256sum] = "f23773e4d97cec823ec634085b5e60a7884a13467ff1bffc17daac14d02f9caa"
 
@@ -51,9 +45,13 @@ EXTRA_OECONF += "--sysconfdir=${sysconfdir}/${BPN} \
                  --enable-iked=yes \
                  ${@bb.utils.contains('DISTRO_FEATURES', 'krb5', '--enable-kinkd', '--disable-kinkd', d)} \
                  ${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', '--enable-ipv6', '--disable-ipv6', d)} \
-                 --with-openssl-libdir=${STAGING_DIR_TARGET} \
+                 --with-openssl-libdir=${STAGING_DIR_TARGET}${prefix} \
                  --with-kernel-build-dir=${STAGING_INCDIR}"
+CLEANBROKEN = "1"
 
+do_configure_prepend () {
+    mkdir -p lib/m4 spmd/m4 iked/m4 kinkd/m4
+}
 
 do_install_append() {
     install -d -m 0755 ${D}${sysconfdir}/init.d/

@@ -1,42 +1,23 @@
-From d71fb0712175b76304795bf90a125bc2b8d4c959 Mon Sep 17 00:00:00 2001
-From: Yi Zhao <yi.zhao@windriver.com>
-Date: Fri, 9 Jun 2017 08:55:36 +0800
-Subject: [PATCH] racoon2: fix hardcoded sysconfdir
+From 4d6a8645bf2c4041afeb1c1a4d0cf340fe5c7d6f Mon Sep 17 00:00:00 2001
+From: Jeremy Puhlman <jpuhlman@mvista.com>
+Date: Wed, 18 Mar 2020 19:54:51 +0000
+Subject: [PATCH 13/13] racoon2-fix-hardcoded-sysconfdir
 
-Replace the hardcoded path /etc/racoon2 with $sysconfdir
-
-Upstream-Status: Inappropriate [configuration]
-
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- pskgen/Makefile.in         |  2 +-
- pskgen/autogen.spmd.pwd.in |  8 ++++----
- samples/child-down.in      |  2 +-
- samples/child-rekey.in     |  2 +-
- samples/child-up.in        |  2 +-
- samples/ikesa-down.in      |  2 +-
- samples/ikesa-rekey.in     |  2 +-
- samples/ikesa-up.in        |  2 +-
- samples/migration.in       |  2 +-
- samples/ph1-down.in        |  2 +-
- samples/ph1-up.in          |  2 +-
- samples/racoon2.conf.in    | 18 +++++++++---------
- samples/vals.conf.in       | 22 +++++++++++-----------
- 13 files changed, 34 insertions(+), 34 deletions(-)
+ pskgen/autogen.spmd.pwd.in  |  8 ++++----
+ samples/hook/child-down.in  |  2 +-
+ samples/hook/child-rekey.in |  2 +-
+ samples/hook/child-up.in    |  2 +-
+ samples/hook/ikesa-down.in  |  2 +-
+ samples/hook/ikesa-rekey.in |  2 +-
+ samples/hook/ikesa-up.in    |  2 +-
+ samples/hook/migration.in   |  2 +-
+ samples/hook/ph1-down.in    |  2 +-
+ samples/hook/ph1-up.in      |  2 +-
+ samples/racoon2.conf.in     | 18 +++++++++---------
+ samples/vals.conf.in        | 22 +++++++++++-----------
+ 12 files changed, 33 insertions(+), 33 deletions(-)
 
-diff --git a/pskgen/Makefile.in b/pskgen/Makefile.in
-index ff0d374..8d272df 100644
---- a/pskgen/Makefile.in
-+++ b/pskgen/Makefile.in
-@@ -20,7 +20,7 @@ install: all
- 	$(INSTALL) -d $(DESTDIR)$(sbindir)
- 	$(INSTALL_SCRIPT) $(PROG) $(DESTDIR)$(sbindir)
- 	$(INSTALL_DATA) $(PROG).8 $(DESTDIR)$(mandir)/man8
--	$(INSTALL) -d $(DESTDIR)$(prefix)/etc/racoon2
-+	$(INSTALL) -d $(DESTDIR)$(sysconfdir)
- 	sh ./autogen.spmd.pwd
- 
- depend:
 diff --git a/pskgen/autogen.spmd.pwd.in b/pskgen/autogen.spmd.pwd.in
 index ac6560c..a9981f3 100755
 --- a/pskgen/autogen.spmd.pwd.in
@@ -57,10 +38,10 @@ index ac6560c..a9981f3 100755
 -	@prefix@/sbin/pskgen -r -o @prefix@/etc/racoon2/spmd.pwd
 +	@sbindir@/pskgen -r -o @sysconfdir@/spmd.pwd
  fi
-diff --git a/samples/child-down.in b/samples/child-down.in
+diff --git a/samples/hook/child-down.in b/samples/hook/child-down.in
 index 01bae1f..8ac9061 100644
---- a/samples/child-down.in
-+++ b/samples/child-down.in
+--- a/samples/hook/child-down.in
++++ b/samples/hook/child-down.in
 @@ -3,7 +3,7 @@
  # run scripts in the child-down.d directory when CHILD_SA is removed
  #
@@ -70,10 +51,10 @@ index 01bae1f..8ac9061 100644
  
  . ./functions
  
-diff --git a/samples/child-rekey.in b/samples/child-rekey.in
+diff --git a/samples/hook/child-rekey.in b/samples/hook/child-rekey.in
 index a10d673..63f3db7 100644
---- a/samples/child-rekey.in
-+++ b/samples/child-rekey.in
+--- a/samples/hook/child-rekey.in
++++ b/samples/hook/child-rekey.in
 @@ -3,7 +3,7 @@
  # run scripts in the child-rekey.d directory when CHILD_SA is rekeyed
  #
@@ -83,10 +64,10 @@ index a10d673..63f3db7 100644
  
  . ./functions
  
-diff --git a/samples/child-up.in b/samples/child-up.in
+diff --git a/samples/hook/child-up.in b/samples/hook/child-up.in
 index d3e8c65..0cacd04 100644
---- a/samples/child-up.in
-+++ b/samples/child-up.in
+--- a/samples/hook/child-up.in
++++ b/samples/hook/child-up.in
 @@ -3,7 +3,7 @@
  # run scripts in the child-up.d directory when CHILD_SA is established
  #
@@ -96,10 +77,10 @@ index d3e8c65..0cacd04 100644
  
  . ./functions
  
-diff --git a/samples/ikesa-down.in b/samples/ikesa-down.in
+diff --git a/samples/hook/ikesa-down.in b/samples/hook/ikesa-down.in
 index 5a12092..492d8a6 100644
---- a/samples/ikesa-down.in
-+++ b/samples/ikesa-down.in
+--- a/samples/hook/ikesa-down.in
++++ b/samples/hook/ikesa-down.in
 @@ -3,7 +3,7 @@
  # run scripts in the ikesa-down.d directory when IKE_SA is removed
  #
@@ -109,10 +90,10 @@ index 5a12092..492d8a6 100644
  
  . ./functions
  
-diff --git a/samples/ikesa-rekey.in b/samples/ikesa-rekey.in
+diff --git a/samples/hook/ikesa-rekey.in b/samples/hook/ikesa-rekey.in
 index fd9668c..0f54c50 100644
---- a/samples/ikesa-rekey.in
-+++ b/samples/ikesa-rekey.in
+--- a/samples/hook/ikesa-rekey.in
++++ b/samples/hook/ikesa-rekey.in
 @@ -3,7 +3,7 @@
  # run scripts in the ikesa-rekey.d directory when IKE_SA is rekeyed 
  #
@@ -122,10 +103,10 @@ index fd9668c..0f54c50 100644
  
  . ./functions
  
-diff --git a/samples/ikesa-up.in b/samples/ikesa-up.in
+diff --git a/samples/hook/ikesa-up.in b/samples/hook/ikesa-up.in
 index 2d72f96..5ab3d51 100644
---- a/samples/ikesa-up.in
-+++ b/samples/ikesa-up.in
+--- a/samples/hook/ikesa-up.in
++++ b/samples/hook/ikesa-up.in
 @@ -3,7 +3,7 @@
  # run scripts in the ikesa-up.d directory when IKE_SA is established
  #
@@ -135,10 +116,10 @@ index 2d72f96..5ab3d51 100644
  
  . ./functions
  
-diff --git a/samples/migration.in b/samples/migration.in
+diff --git a/samples/hook/migration.in b/samples/hook/migration.in
 index 0847eae..52f7980 100644
---- a/samples/migration.in
-+++ b/samples/migration.in
+--- a/samples/hook/migration.in
++++ b/samples/hook/migration.in
 @@ -3,7 +3,7 @@
  # run scripts in the migration.d directory when MIP6 MIGRATE is issued
  #
@@ -148,10 +129,10 @@ index 0847eae..52f7980 100644
  
  . ./functions
  
-diff --git a/samples/ph1-down.in b/samples/ph1-down.in
+diff --git a/samples/hook/ph1-down.in b/samples/hook/ph1-down.in
 index 9d2e305..a7a8b0a 100644
---- a/samples/ph1-down.in
-+++ b/samples/ph1-down.in
+--- a/samples/hook/ph1-down.in
++++ b/samples/hook/ph1-down.in
 @@ -3,7 +3,7 @@
  # run scripts in the ph1-down.d directory when ISAKMP SA is removed
  #
@@ -161,10 +142,10 @@ index 9d2e305..a7a8b0a 100644
  
  . ./functions
  
-diff --git a/samples/ph1-up.in b/samples/ph1-up.in
+diff --git a/samples/hook/ph1-up.in b/samples/hook/ph1-up.in
 index ab205fa..75e8cab 100644
---- a/samples/ph1-up.in
-+++ b/samples/ph1-up.in
+--- a/samples/hook/ph1-up.in
++++ b/samples/hook/ph1-up.in
 @@ -3,7 +3,7 @@
  # run scripts in the ph1-up.d directory when ISAKMP SA is established
  #
@@ -175,7 +156,7 @@ index ab205fa..75e8cab 100644
  . ./functions
  
 diff --git a/samples/racoon2.conf.in b/samples/racoon2.conf.in
-index 5afda24..f365731 100644
+index 9dc9d5a..5fb6560 100644
 --- a/samples/racoon2.conf.in
 +++ b/samples/racoon2.conf.in
 @@ -1,7 +1,7 @@
@@ -187,7 +168,7 @@ index 5afda24..f365731 100644
  
  # interface info
  interface
-@@ -17,7 +17,7 @@ interface
+@@ -21,7 +21,7 @@ interface
  	spmd {
  		unix "/var/run/racoon2/spmif";
  	};
@@ -196,45 +177,45 @@ index 5afda24..f365731 100644
  };
  
  # resolver info
-@@ -42,7 +42,7 @@ resolver
+@@ -46,7 +46,7 @@ resolver
  # Please don't touch this line (especially novice user);
  #
  
 -include "@prefix@/etc/racoon2/default.conf";
 +include "@sysconfdir@/default.conf";
  
+ # Define host specific pre-shared keys here
  #
- # These are examples of configuration for each peer.
-@@ -50,21 +50,21 @@ include "@prefix@/etc/racoon2/default.conf";
- # Uncomment following one 'include' line you want to use.
- 
- ## Transport mode IKEv2 or IKEv1
+@@ -82,21 +82,21 @@ remote 192.168.2.67 {
+ ## uncommenting this 'include' line, also uncomment the
+ ## 'include' line for transport_ike_natt.conf in the transport_ike.conf
+ ## file and edit that file and vals.conf appropriately for your environment
 -# include "@prefix@/etc/racoon2/transport_ike.conf";
-+# include "@sysconfdir@/transport_ike.conf";
++# include "@sysconfdir@/racoon2/transport_ike.conf";
  
  ## Tunnel mode IKEv2 or IKEv1 (initiator and responder)
 -# include "@prefix@/etc/racoon2/tunnel_ike.conf";
-+# include "@sysconfdir@/tunnel_ike.conf";
++# include "@sysconfdir@/racoon2/tunnel_ike.conf";
  
  ## Tunnel mode IKEv2 (responder; NAT-T support)
  ## Enable this if you're a responder in global net and
  ## the peer is an initiator behind NAT.
 -# include "@prefix@/etc/racoon2/tunnel_ike_natt.conf";
-+# include "@sysconfdir@/tunnel_ike_natt.conf";
++# include "@sysconfdir@/racoon2/tunnel_ike_natt.conf";
  
  ## Transport mode KINK
 -# include "@prefix@/etc/racoon2/transport_kink.conf";
-+# include "@sysconfdir@/transport_kink.conf";
++# include "@sysconfdir@/racoon2/transport_kink.conf";
  
  ## Tunnel mode KINK
 -# include "@prefix@/etc/racoon2/tunnel_kink.conf";
-+# include "@sysconfdir@/tunnel_kink.conf";
++# include "@sysconfdir@/racoon2/tunnel_kink.conf";
  
  ## For local test
 -# include "@prefix@/etc/racoon2/local-test.conf";
-+# include "@sysconfdir@/local-test.conf";
++# include "@sysconfdir@/racoon2/local-test.conf";
 diff --git a/samples/vals.conf.in b/samples/vals.conf.in
-index a0e8023..2fa7e4d 100644
+index 442786c..b378513 100644
 --- a/samples/vals.conf.in
 +++ b/samples/vals.conf.in
 @@ -2,10 +2,10 @@
@@ -250,7 +231,7 @@ index a0e8023..2fa7e4d 100644
  
  ### ID Settings ###
  	# your FQDN : specify if you want to use FQDN as your ID
-@@ -75,16 +75,16 @@ setval {
+@@ -103,16 +103,16 @@ setval {
  
  ### Scripts
          ## IKEv2
@@ -277,5 +258,5 @@ index a0e8023..2fa7e4d 100644
  ### KINK ###
  	# Kerberos5 principal
 -- 
-1.9.1
+2.24.1
 
