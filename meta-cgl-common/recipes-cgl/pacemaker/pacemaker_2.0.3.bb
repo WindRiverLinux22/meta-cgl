@@ -13,24 +13,20 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=000212f361a81b100d9d0f0435040663"
 
 DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python3-native"
 
-SRC_URI = "git://github.com/ClusterLabs/${BPN}.git;branch=1.1 \
-           file://0001-pacemaker-fix-xml-config.patch \
-           file://0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch \
-           file://0003-pacemaker-fix-header-defs-lookup.patch \
-           file://0004-pacemaker-do-not-build-help.patch \
-           file://0005-pacemaker-do-not-execute-target-program-while-cross-.patch \
-           file://0006-pacemaker-do-not-use-libgnutls-config.patch \
-           file://set-OCF_ROOT_DIR-to-libdir-ocf.patch \
-           file://0007-Make-the-testing-infrastructure-optional.patch \
+SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
+           file://0006-Fix-tools-Fix-definition-of-curses_indented_printf.patch \
+           file://0001-Fix-python3-usage.patch \
            file://volatiles \
            file://tmpfiles \
           "
 
+CFLAGS += "-I${STAGING_INCDIR}/heartbeat"
+CPPFLAGS +="-I${STAGING_INCDIR}/heartbeat"
 SRC_URI_append_libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc.patch"
 
-SRCREV = "f14e36fd4336874705b34266c7cddbe12119106c"
+SRCREV = "4b1f869f0f64ef0d248b6aa4781d38ecccf83318"
 
-inherit autotools-brokensep pkgconfig systemd python3-dir useradd
+inherit autotools-brokensep pkgconfig systemd python3native python3-dir useradd
 
 S = "${WORKDIR}/git"
 
@@ -48,7 +44,11 @@ EXTRA_OECONF += "STAGING_INCDIR=${STAGING_INCDIR} \
                  --without-heartbeat \
                  --disable-pretty \
                  --disable-tests \
-                "
+                 "
+
+CACHED_CONFIGUREVARS += " \
+    ac_cv_path_BASH_PATH=/bin/bash \
+"
 
 do_install_append() {
     install -d ${D}${sysconfdir}/default
@@ -92,7 +92,7 @@ FILES_${PN} += " ${datadir}/snmp                             \
                  ${libdir}/corosync/lcrso/pacemaker.lcrso    \
                  ${libdir}/${PYTHON_DIR}/dist-packages/cts/  \
                  ${libdir}/ocf/resource.d/ \
-                 ${libdir}/${PYTHON_DIR}/site-packages \
+                 ${libdir}/${PYTHON_DIR}/site-packages/cts/ \
                "
 FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
 RDEPENDS_${PN} = "bash python3-core perl libqb ${PN}-cli-utils"
