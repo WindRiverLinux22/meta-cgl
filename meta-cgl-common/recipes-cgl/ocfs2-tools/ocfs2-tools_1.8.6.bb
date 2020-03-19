@@ -10,19 +10,17 @@ ext3."
 HOMEPAGE = "http://oss.oracle.com/projects/ocfs2-tools/"
 SECTION = "System Environment/Base"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+LIC_FILES_CHKSUM = "file://COPYING;md5=8ef380476f642c20ebf40fecb0add2ec"
 
 SRC_URI = "git://github.com/markfasheh/ocfs2-tools \
     file://0003-vendor-common-o2cb.ocf-add-new-conf-file.patch \
-    file://ocfs2-fix-compile-error-when-glibc-upgrade.patch \
     file://ocfs2-tools-1.8.5-format-fortify.patch \
     file://no-redhat.patch \
     file://o2cb.service \
     file://ocfs2.service \
     file://0001-Fix-build-with-glibc-2.28.patch \
-    file://0001-mounted.ocfs2-use-sys-sysmacros.h-include-for-makede.patch \
 "
-SRCREV = "f1b4d073f08679f97b64b3eb88e586032f92a701"
+SRCREV = "4d76ceb4aa7aaa1fd595368089e99575d708f719"
 S = "${WORKDIR}/git"
 
 inherit autotools-brokensep pkgconfig systemd
@@ -35,7 +33,7 @@ DEPENDS = "corosync pacemaker \
 # lsbinitscripts are needed to replace /etc/init.d/functions supplied by initscripts (systemv)
 # They are not the same code!
 #
-RDEPENDS_${PN} = "bash coreutils net-tools module-init-tools e2fsprogs chkconfig glib-2.0 \
+RDEPENDS_${PN} = "bash coreutils net-tools module-init-tools e2fsprogs glib-2.0 \
                   ${@bb.utils.contains('DISTRO_FEATURES','systemd','lsbinitscripts','',d)}"
 
 ASNEEDED_pn-${PN} = ""
