@@ -106,6 +106,8 @@ FILES_${PN} += "${datadir}/cluster/* \
                 ${libdir}/ocf/resource.d/heartbeat/ \
                 ${libdir}/ocf/lib/heartbeat/* \
                 ${libdir}/ocf/resource.d/redhat \
+                ${nonarch_libdir}/tmpfiles.d \
+                ${systemd_unitdir}/system \
                 "
 
 FILES_${PN}-dbg += "${libdir}/ocf/resource.d/heartbeat/.debug \
