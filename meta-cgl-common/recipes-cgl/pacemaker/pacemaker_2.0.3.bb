@@ -16,6 +16,8 @@ DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python3-native"
 SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
            file://0006-Fix-tools-Fix-definition-of-curses_indented_printf.patch \
            file://0001-Fix-python3-usage.patch \
+           file://0001-Mark-declaration-with-extern.patch \
+           file://0001-pacemaker-set-OCF_ROOT_DIR-to-libdir-ocf.patch \
            file://volatiles \
            file://tmpfiles \
           "
