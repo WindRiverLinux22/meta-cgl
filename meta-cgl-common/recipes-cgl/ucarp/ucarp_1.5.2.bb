@@ -17,6 +17,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=278a886e91f2f6c983ffdf040130cdc6"
 SRC_URI = "http://download.pureftpd.org/pub/ucarp/${BPN}-${PV}.tar.gz \
            file://ucarp-configure-sha1.patch \
            file://ucarp-configure-snprintf.patch \
+           file://0001-ip_carp.h-use-__attribute__-packed-instead-of-__pack.patch \
            file://ucarp.init \
            file://vip-001.conf.example \
            file://vip-common.conf \
