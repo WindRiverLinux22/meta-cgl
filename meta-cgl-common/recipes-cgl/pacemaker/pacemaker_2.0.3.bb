@@ -49,6 +49,18 @@ EXTRA_OECONF += "STAGING_INCDIR=${STAGING_INCDIR} \
 CACHED_CONFIGUREVARS += " \
     ac_cv_path_BASH_PATH=/bin/bash \
 "
+do_configure_prepend() {
+    # remove buildpath
+    placeh="abs_top_builddir abs_top_srcdir"
+    for ph in $placeh
+    do
+        srcdirs=$(grep -Rn $ph ${S}/* | awk -F: '{print $1}' | uniq)
+        for srcdir in $srcdirs
+        do
+            sed -i "s/${ph}/${ph}_placeholder/g" $srcdir
+        done
+    done
+}
 
 do_install_append() {
     install -d ${D}${sysconfdir}/default
@@ -64,6 +76,13 @@ do_install_append() {
 
     rm -rf ${D}${localstatedir}/lib/heartbeat
     rm -rf ${D}${localstatedir}/run
+
+    # remove buildpath
+    tempdirs=$(grep -Rn ${RECIPE_SYSROOT_NATIVE} ${D}/* | awk -F: '{print $1}' | uniq)
+    for temdir in $tempdirs
+    do
+        sed -i "s:${RECIPE_SYSROOT_NATIVE}::g" $temdir
+    done
 }
 
 PACKAGES_prepend = "${PN}-cli-utils ${PN}-libs ${PN}-cluster-libs ${PN}-remote "
