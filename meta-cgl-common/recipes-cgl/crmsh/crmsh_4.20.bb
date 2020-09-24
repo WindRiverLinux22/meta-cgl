@@ -9,7 +9,6 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 DEPENDS = "asciidoc-native \
            docbook-xsl-stylesheets-native \
            libxslt-native \
-           python-setuptools-native \
            "
 RDEPENDS_${PN} = "pacemaker python3-lxml python3-parallax gawk bash"
 
