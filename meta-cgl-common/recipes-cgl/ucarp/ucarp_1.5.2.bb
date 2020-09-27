@@ -32,6 +32,7 @@ SRC_URI[sha256sum] = "f3cc77e28481fd04f62bb3d4bc03104a97dd316c80c0ed04ad7be24b54
 inherit autotools gettext systemd
 
 DEPENDS = "libpcap"
+RDEPENDS_${PN} = "${@bb.utils.contains('DISTRO_FEATURES','systemd','initscripts-functions','',d)}"
 
 SYSTEMD_SERVICE_${PN} = "ucarp.service"
 SYSTEMD_AUTO_ENABLE = "disable"
