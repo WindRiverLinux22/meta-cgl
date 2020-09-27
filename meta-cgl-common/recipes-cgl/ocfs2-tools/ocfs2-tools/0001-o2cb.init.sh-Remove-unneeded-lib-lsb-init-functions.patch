@@ -1,0 +1,32 @@
+From b7913a62e2d78fa98ae2c475de4cc697519181e2 Mon Sep 17 00:00:00 2001
+From: Robert Yang <liezhi.yang@windriver.com>
+Date: Tue, 10 Sep 2019 19:29:16 -0700
+Subject: [PATCH] o2cb.init.sh: Remove unneeded /lib/lsb/init-functions
+
+The "systemctl start o2cb/ocfs2" works well when systemd (no
+/etc/init.d/functions, either), so remove the unneeded line.
+
+Upstream-Status: Pending
+
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
+ vendor/common/o2cb.init.sh | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/vendor/common/o2cb.init.sh b/vendor/common/o2cb.init.sh
+index 8b0dbf09..49eb9a4c 100755
+--- a/vendor/common/o2cb.init.sh
++++ b/vendor/common/o2cb.init.sh
+@@ -25,9 +25,6 @@ then
+ start_daemon () {
+     daemon  $*
+ }
+-else
+-# Let's try to use the LSB functions
+-. /lib/lsb/init-functions
+ fi
+ 
+ if [ $? != 0 ]
+-- 
+2.21.0
+
