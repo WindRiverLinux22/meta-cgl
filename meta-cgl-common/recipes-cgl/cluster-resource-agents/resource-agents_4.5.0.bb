@@ -49,6 +49,7 @@ CACHED_CONFIGUREVARS += " \
     ac_cv_path_TEST=test \
     ac_cv_path_BASH_SHELL=/bin/bash \
     ac_cv_path_PYTHON="/usr/bin/env python3" \
+    ac_cv_path_SSH="/usr/bin/ssh" \
 "
 
 EXTRA_OECONF += "--disable-fatal-warnings \
