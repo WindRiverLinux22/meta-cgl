@@ -1,0 +1,31 @@
+From c739aa4fda8bae8e0aa7ed6af29c16392eb13a86 Mon Sep 17 00:00:00 2001
+From: Chen Qi <Qi.Chen@windriver.com>
+Date: Fri, 16 Oct 2020 16:24:24 +0800
+Subject: [PATCH] ldirectord.service.in: use /run instead of /var/run
+
+/var/run has been deprecated by systemd, so use /run instead,
+as suggested by systemd.
+
+Upstream-Status: Pending
+
+Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+---
+ ldirectord/systemd/ldirectord.service.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ldirectord/systemd/ldirectord.service.in b/ldirectord/systemd/ldirectord.service.in
+index 191f62af..7965b79f 100644
+--- a/ldirectord/systemd/ldirectord.service.in
++++ b/ldirectord/systemd/ldirectord.service.in
+@@ -8,7 +8,7 @@ ExecStartPost=/usr/bin/touch /var/lock/subsys/ldirectord
+ ExecStop=@sbindir@/ldirectord stop
+ ExecStopPost=@RM@ -f /var/lock/subsys/ldirectord
+ ExecReload=@sbindir@/ldirectord reload
+-PIDFile=/var/run/ldirectord.ldirectord.pid
++PIDFile=/run/ldirectord.ldirectord.pid
+ Type=forking
+ KillMode=none
+ 
+-- 
+2.17.1
+
