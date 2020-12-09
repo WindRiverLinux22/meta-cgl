@@ -14,9 +14,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=000212f361a81b100d9d0f0435040663"
 DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python3-native"
 
 SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
-           file://0006-Fix-tools-Fix-definition-of-curses_indented_printf.patch \
            file://0001-Fix-python3-usage.patch \
-           file://0001-Mark-declaration-with-extern.patch \
            file://0001-pacemaker-set-OCF_ROOT_DIR-to-libdir-ocf.patch \
            file://volatiles \
            file://tmpfiles \
@@ -26,7 +24,7 @@ CFLAGS += "-I${STAGING_INCDIR}/heartbeat"
 CPPFLAGS +="-I${STAGING_INCDIR}/heartbeat"
 SRC_URI_append_libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc.patch"
 
-SRCREV = "4b1f869f0f64ef0d248b6aa4781d38ecccf83318"
+SRCREV = "ba59be71228fed04f78ab374dfac748d314d0e89"
 
 inherit autotools-brokensep pkgconfig systemd python3native python3-dir useradd
 
@@ -78,6 +76,7 @@ do_install_append() {
 
     rm -rf ${D}${localstatedir}/lib/heartbeat
     rm -rf ${D}${localstatedir}/run
+    rm -rf ${D}${localstatedir}/log
 
     # remove buildpath
     tempdirs=$(grep -Rn ${RECIPE_SYSROOT_NATIVE} ${D}/* | awk -F: '{print $1}' | uniq)

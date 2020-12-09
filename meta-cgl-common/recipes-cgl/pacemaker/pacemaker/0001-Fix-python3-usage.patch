@@ -1,4 +1,4 @@
-From fdefa9efc726fe704238d462a3dc207e0282fb9e Mon Sep 17 00:00:00 2001
+From f470884e0b990676685c8740b5c7d6f094267e4f Mon Sep 17 00:00:00 2001
 From: Jeremy Puhlman <jpuhlman@mvista.com>
 Date: Sun, 15 Mar 2020 21:09:33 +0000
 Subject: [PATCH] Fix python3 usage
@@ -18,12 +18,11 @@ Upstream-Status: Pending
  cts/pacemaker-cts-dummyd.in                   | 2 +-
  daemons/fenced/fence_legacy.in                | 2 +-
  doc/Pacemaker_Development/en-US/Ch-Python.txt | 2 +-
- doc/Pacemaker_Development/pot/Ch-Python.pot   | 2 +-
  tools/pcmk_simtimes.in                        | 2 +-
- 14 files changed, 14 insertions(+), 14 deletions(-)
+ 13 files changed, 13 insertions(+), 13 deletions(-)
 
 diff --git a/cts/CTSlab.py.in b/cts/CTSlab.py.in
-index f4ae60dc1..55a0d4ecf 100644
+index 4bae93515..f09f71c66 100644
 --- a/cts/CTSlab.py.in
 +++ b/cts/CTSlab.py.in
 @@ -1,4 +1,4 @@
@@ -43,10 +42,10 @@ index 81a5da8c0..bbadf938a 100644
  '''OCF IPaddr/IPaddr2 Resource Agent Test'''
  
 diff --git a/cts/cluster_test.in b/cts/cluster_test.in
-index e0d28509d..f982be05a 100755
+index 38f941d3e..5a289e3fc 100755
 --- a/cts/cluster_test.in
 +++ b/cts/cluster_test.in
-@@ -171,4 +171,4 @@ printf "\nAll set to go for %d iterations!\n" "$CTS_numtests"
+@@ -172,4 +172,4 @@ printf "\nAll set to go for %d iterations!\n" "$CTS_numtests"
      || echo "+ To use a different configuration, remove ~/.cts and re-run cts (or edit it manually)."
  
  echo Now paste the following command into this shell:
@@ -63,7 +62,7 @@ index 592d850b4..9a653a442 100644
  """
  
 diff --git a/cts/cts-fencing.in b/cts/cts-fencing.in
-index 2d9999ca0..8e3fb7203 100644
+index 444402438..0270c99ce 100644
 --- a/cts/cts-fencing.in
 +++ b/cts/cts-fencing.in
 @@ -1,4 +1,4 @@
@@ -83,7 +82,7 @@ index 28f4efe7f..b4ed5024f 100644
  
  Reads a specified number of lines from the supplied offset
 diff --git a/cts/cts-scheduler.in b/cts/cts-scheduler.in
-index 8fa16fb69..d4306b02b 100644
+index 23e6a919f..09058ce22 100644
 --- a/cts/cts-scheduler.in
 +++ b/cts/cts-scheduler.in
 @@ -1,4 +1,4 @@
@@ -93,7 +92,7 @@ index 8fa16fb69..d4306b02b 100644
  """
  
 diff --git a/cts/environment.py b/cts/environment.py
-index db9d3db16..9d103fda9 100644
+index 6a97b1289..39e89fa6f 100644
 --- a/cts/environment.py
 +++ b/cts/environment.py
 @@ -639,7 +639,7 @@ class Environment(object):
@@ -106,7 +105,7 @@ index db9d3db16..9d103fda9 100644
  
          sys.exit(status)
 diff --git a/cts/fence_dummy.in b/cts/fence_dummy.in
-index a2692b1e0..f1d111205 100644
+index 8b0dd5165..9e8624bd9 100644
 --- a/cts/fence_dummy.in
 +++ b/cts/fence_dummy.in
 @@ -1,4 +1,4 @@
@@ -148,19 +147,6 @@ index 42d35b649..467e1c524 100644
  ----
  ====
  which will be replaced with the appropriate python executable when Pacemaker is
-diff --git a/doc/Pacemaker_Development/pot/Ch-Python.pot b/doc/Pacemaker_Development/pot/Ch-Python.pot
-index ed71331ce..27c7e22e5 100644
---- a/doc/Pacemaker_Development/pot/Ch-Python.pot
-+++ b/doc/Pacemaker_Development/pot/Ch-Python.pot
-@@ -39,7 +39,7 @@ msgstr ""
- 
- #. Tag: screen
- #, no-c-format
--msgid "#!@PYTHON@"
-+msgid "#!/usr/bin/env python3"
- msgstr ""
- 
- #. Tag: para
 diff --git a/tools/pcmk_simtimes.in b/tools/pcmk_simtimes.in
 index 6e362243b..28009f499 100644
 --- a/tools/pcmk_simtimes.in
@@ -172,5 +158,5 @@ index 6e362243b..28009f499 100644
  """
  
 -- 
-2.23.0
+2.17.1
 
