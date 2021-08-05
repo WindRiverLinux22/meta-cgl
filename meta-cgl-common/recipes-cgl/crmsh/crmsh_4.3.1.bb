@@ -10,14 +10,14 @@ DEPENDS = "asciidoc-native \
            docbook-xsl-stylesheets-native \
            libxslt-native \
            "
-RDEPENDS:${PN} = "pacemaker python3-lxml python3-parallax gawk bash"
+RDEPENDS:${PN} = "pacemaker python3-lxml python3-parallax gawk bash python3-doctest"
 
 S = "${WORKDIR}/git"
 SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
            file://tweaks_for_build.patch \
           "
 
-SRCREV = "d10d2fbdd1b357500387bebb432c68e88748526b"
+SRCREV = "00ec69054edecd068deda54c6184c0385d90ebd2"
 
 inherit autotools-brokensep setuptools3
 
