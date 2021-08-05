@@ -18,9 +18,6 @@ This layer depends on:
   layers: meta-openstack
   branch: master
 
-  URI: git://git.yoctoproject.org/meta-qt3
-  branch: master
-
   URI: git://git.yoctoproject.org/meta-selinux
   branch: master
 
@@ -86,7 +83,6 @@ other layers needed. Adapt the below list to proper format.
 
     meta
     meta-cgl/meta-cgl-common
-    meta-qt3
     meta-openembedded/meta-networking
     meta-openembedded/meta-filesystems
     meta-openembedded/meta-oe
@@ -98,9 +94,6 @@ other layers needed. Adapt the below list to proper format.
     meta-selinux
     meta-security
     meta-cloud-services/meta-openstack
-
-A BBMASK definition is required because of some recipes duplicate existance:
-    BBMASK = "meta-openembedded/meta-oe/recipes-support/multipath-tools"
 
 Now there is available the "cgl-init-build-env" script which could be used to
 automize the above mentione information:
