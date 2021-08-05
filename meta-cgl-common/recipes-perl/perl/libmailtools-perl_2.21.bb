@@ -7,7 +7,7 @@ DEPENDS = " \
 	libtest-pod-perl-native \
 	libtimedate-perl-native \
 	"	
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
 	libtest-pod-perl \
 	libtimedate-perl \
 	perl-module-io-handle \

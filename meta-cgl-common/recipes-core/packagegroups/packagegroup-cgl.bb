@@ -9,11 +9,11 @@ inherit packagegroup
 
 PACKAGES = "packagegroup-cgl"
 
-RDEPENDS_${PN} = "\
+RDEPENDS:${PN} = "\
     packagegroup-cgl-kernel \
     packagegroup-cgl-swdevtools \
     packagegroup-cgl-middleware \
     packagegroup-cgl-applications \
     "
 
-RRECOMMENDS_${PN} = ""
+RRECOMMENDS:${PN} = ""

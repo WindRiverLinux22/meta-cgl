@@ -24,7 +24,7 @@ LM_SENSORS = " \
     lmsensors-config-fancontrol \
     "
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     lvm2 \
     ${LM_SENSORS} \
     bc \
@@ -55,15 +55,15 @@ LTTNG ?= "\
     lttng-modules \
     lttng-ust \
     "
-LTTNG_armv6 ?= ""
+LTTNG:armv6 ?= ""
 
 LTTNGUST = "lttng-ust"
 LTTNGUST_libc-uclibc = ""
 
-RDEPENDS_${PN}_append_qemux86 = " valgrind lttng-ust"
-RDEPENDS_${PN}_append_qemux86-64 = " ${LTTNGUST}"
-RDEPENDS_${PN}_append_qemuppc = " ${LTTNGUST}"
-RDEPENDS_${PN}_append_qemuarm = " ${LTTNGUST}"
-RDEPENDS_${PN}_append_powerpc = " ${LTTNGUST}"
+RDEPENDS:${PN}:append:qemux86 = " valgrind lttng-ust"
+RDEPENDS:${PN}:append:qemux86-64 = " ${LTTNGUST}"
+RDEPENDS:${PN}:append:qemuppc = " ${LTTNGUST}"
+RDEPENDS:${PN}:append:qemuarm = " ${LTTNGUST}"
+RDEPENDS:${PN}:append:powerpc = " ${LTTNGUST}"
 
-RRECOMMENDS_${PN} = ""
+RRECOMMENDS:${PN} = ""

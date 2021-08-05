@@ -35,13 +35,13 @@ DEPENDS = "corosync pacemaker \
 # lsbinitscripts are needed to replace /etc/init.d/functions supplied by initscripts (systemv)
 # They are not the same code!
 #
-RDEPENDS_${PN} = "bash coreutils net-tools module-init-tools e2fsprogs glib-2.0"
+RDEPENDS:${PN} = "bash coreutils net-tools module-init-tools e2fsprogs glib-2.0"
 
-ASNEEDED_pn-${PN} = ""
+ASNEEDED:pn-${PN} = ""
 PARALLEL_MAKE = ""
-INSANE_SKIP_${PN} = "unsafe-references-in-binaries"
-CFLAGS_append += "-DGLIB_COMPILATION"
-CPPFLAGS_append += "-DGLIB_COMPILATION"
+INSANE_SKIP:${PN} = "unsafe-references-in-binaries"
+CFLAGS:append = " -DGLIB_COMPILATION"
+CPPFLAGS:append = " -DGLIB_COMPILATION"
 
 EXTRA_OECONF = " \
     --enable-ocfs2console=no \
@@ -50,7 +50,7 @@ EXTRA_OECONF = " \
     --with-root-prefix=${root_prefix} \
 "
 
-do_configure_prepend () {
+do_configure:prepend () {
         # fix here or EXTRA_OECONF
         sed -i -e '/^PYTHON_INCLUDES="-I/c\
 PYTHON_INCLUDES="-I=/usr/include/python${PYTHON_BASEVERSION}"' \
@@ -65,16 +65,16 @@ PYTHON_INCLUDES="-I=/usr/include/python${PYTHON_BASEVERSION}"' \
 }
 
 
-do_compile_prepend() {
+do_compile:prepend() {
     for m in `find . -name "Makefile"` ; do
         sed -i -e "s@-I/usr/include@-I${STAGING_DIR_TARGET}/usr/include@g" $m
     done
 }
 
-SYSTEMD_SERVICE_${PN} = "o2cb.service ocfs2.service"
+SYSTEMD_SERVICE:${PN} = "o2cb.service ocfs2.service"
 SYSTEMD_AUTO_ENABLE = "disable"
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${sysconfdir}/init.d
     install -m 0755 ${S}/vendor/common/o2cb.init ${D}${sysconfdir}/init.d/o2cb
     install -m 0755 ${S}/vendor/common/ocfs2.init ${D}${sysconfdir}/init.d/ocfs2

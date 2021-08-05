@@ -40,7 +40,7 @@ SRC_URI[md5sum] = "101c8f507b1f407468d5ef15ae6719da"
 SRC_URI[sha256sum] = "851d2add2c129fef9fede764fec80229e1f6e7295e0e979950d10258648b462c"
 S = "${WORKDIR}/Heartbeat-3-0-958e11be8686"
 DEPENDS = "cluster-glue corosync gnutls libxslt-native xmlto-native docbook-xml-dtd4-native docbook-xsl-stylesheets-native intltool"
-RDEPENDS_${PN} += "python"
+RDEPENDS:${PN} += "python"
 inherit autotools-brokensep pkgconfig useradd
 EXTRA_OECONF = " \
     STAGING_DIR_TARGET=${STAGING_DIR_TARGET} \
@@ -48,7 +48,7 @@ EXTRA_OECONF = " \
     --disable-static \
 "
 SOURCE1 = "heartbeat/init.d/heartbeat"
-CFLAGS_append += "-DGLIB_COMPILATION"
+CFLAGS:append = " -DGLIB_COMPILATION"
 
 do_configure() {
     ./bootstrap
@@ -70,12 +70,12 @@ do_configure() {
     fi
     oe_runconf ${EXTRA_OECONF}
 }
-do_compile_prepend() {
+do_compile:prepend() {
     sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' ${HOST_PREFIX}libtool
     sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' ${HOST_PREFIX}libtool
     make clean
 }
-do_install_append () {
+do_install:append () {
     sed -i -e 's,/usr/lib/,${libdir}/,' ${WORKDIR}/heartbeat.service
     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
         install -d ${D}${libexecdir}
@@ -101,22 +101,22 @@ do_install() {
 }
 
 inherit systemd
-SYSTEMD_SERVICE_${PN} = "heartbeat.service"
+SYSTEMD_SERVICE:${PN} = "heartbeat.service"
 
 USERADD_PACKAGES = "${PN}"
-GROUPADD_PARAM_${PN} = "-r haclient"
-USERADD_PARAM_${PN} = " \
+GROUPADD_PARAM:${PN} = "-r haclient"
+USERADD_PARAM:${PN} = " \
     -r -g haclient -d /var/lib/heartbeat/cores/hacluster -M \
     -s /sbin/nologin -c \"heartbeat user\" hacluster \
 "
-FILES_${PN}-dbg += " \
+FILES:${PN}-dbg += " \
     ${libdir}/heartbeat/plugins/quorum/.debug \
     ${libdir}/heartbeat/plugins/HBauth/.debug \
     ${libdir}/heartbeat/plugins/tiebreaker/.debug \
     ${libdir}/heartbeat/plugins/HBcomm/.debug \
     ${libdir}/heartbeat/plugins/HBcompress/.debug \
 "
-FILES_${PN} += " \
+FILES:${PN} += " \
     run/heartbeat/ccm \
     run/heartbeat/dopd \
     ${libdir}/tmpfiles.d \

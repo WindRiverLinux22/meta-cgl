@@ -17,9 +17,9 @@ PR = "r1"
 
 DEPENDS = "corosync dbus openldap libxml2 ncurses perl zlib"
 
-FILES_${PN} += "/lib/udev/rules.d/51-dlm.rules \
+FILES:${PN} += "/lib/udev/rules.d/51-dlm.rules \
     ${localstatedir}/run "
-FILES_${PN}-doc += "/usr/share/man3/* /usr/share/man8/*"
+FILES:${PN}-doc += "/usr/share/man3/* /usr/share/man8/*"
 
 do_configure () {
     CFLAGS="${TARGET_CFLAGS}"       \

@@ -22,7 +22,7 @@ MULTIPATH_TOOLS = " \
     kpartx \
     "
 
-RDEPENDS_packagegroup-cgl-middleware = "\
+RDEPENDS:packagegroup-cgl-middleware = "\
     net-snmp-server \
     net-snmp-client \
     net-snmp-libs \
@@ -53,4 +53,4 @@ RDEPENDS_packagegroup-cgl-middleware = "\
     dmidecode \
     "
 
-RRECOMMENDS_packagegroup-cgl-middleware = ""
+RRECOMMENDS:packagegroup-cgl-middleware = ""

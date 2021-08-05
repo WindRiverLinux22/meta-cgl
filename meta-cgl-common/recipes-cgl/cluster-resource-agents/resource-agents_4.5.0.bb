@@ -5,14 +5,14 @@ rgmanager service managers."
 HOMEPAGE = "http://sources.redhat.com/cluster/wiki/"
 
 LICENSE = "GPLv2+ & LGPLv2+ & GPLv3"
-LICENSE_${PN} = "GPLv2+ & LGPLv2+"
-LICENSE_${PN}-dev = "GPLv2+ & LGPLv2+"
-LICENSE_${PN}-staticdev = "GPLv2+ & LGPLv2+"
-LICENSE_${PN}-dbg = "GPLv2+ & LGPLv2+"
-LICENSE_${PN}-doc = "GPLv2+ & LGPLv2+"
-LICENSE_${PN}-extra = "GPLv3"
-LICENSE_${PN}-extra-dbg = "GPLv3"
-LICENSE_ldirectord = "GPLv2+"
+LICENSE:${PN} = "GPLv2+ & LGPLv2+"
+LICENSE:${PN}-dev = "GPLv2+ & LGPLv2+"
+LICENSE:${PN}-staticdev = "GPLv2+ & LGPLv2+"
+LICENSE:${PN}-dbg = "GPLv2+ & LGPLv2+"
+LICENSE:${PN}-doc = "GPLv2+ & LGPLv2+"
+LICENSE:${PN}-extra = "GPLv3"
+LICENSE:${PN}-extra-dbg = "GPLv3"
+LICENSE:ldirectord = "GPLv2+"
 
 SRC_URI = "git://github.com/ClusterLabs/resource-agents \
            file://01-disable-doc-build.patch \
@@ -37,7 +37,7 @@ DEPENDS = "cluster-glue"
 # ip.sh requires: ethtool iproute2 iputils-arping
 # fs.sh requires: e2fsprogs-e2fsck util-linux quota
 # netfs.sh requires: procps util-linux nfs-utils
-RDEPENDS_${PN} += "bash perl lvm2 \
+RDEPENDS:${PN} += "bash perl lvm2 \
     ethtool iproute2 iputils-arping \
     e2fsprogs-e2fsck util-linux quota \
     procps nfs-utils \
@@ -56,31 +56,31 @@ CACHED_CONFIGUREVARS += " \
 EXTRA_OECONF += "--disable-fatal-warnings \
                  --with-rsctmpdir=/var/run/heartbeat/rsctmp"
 
-do_install_append() {
+do_install:append() {
     rm -rf "${D}${localstatedir}/run"
     rmdir --ignore-fail-on-non-empty "${D}${localstatedir}"
 }
 
 # tickle_tcp is published under GPLv3, we just split it into ${PN}-extra,
 # and it's required by portblock, so move portblock into ${PN}-extra together.
-PACKAGES_prepend  = "${PN}-extra ${PN}-extra-dbg ldirectord "
+PACKAGES:prepend  = "${PN}-extra ${PN}-extra-dbg ldirectord "
 NOAUTOPACKAGEDEBUG = "1"
-FILES_${PN}-extra = "${libexecdir}/heartbeat/tickle_tcp \
+FILES:${PN}-extra = "${libexecdir}/heartbeat/tickle_tcp \
                      ${libdir}/ocf/resource.d/heartbeat/portblock \
                      ${datadir}/resource-agents/ocft/configs/portblock \
                     "
-FILES_${PN}-extra-dbg = "${libexecdir}/heartbeat/.debug/tickle_tcp"
+FILES:${PN}-extra-dbg = "${libexecdir}/heartbeat/.debug/tickle_tcp"
 
-FILES_ldirectord = " \
+FILES:ldirectord = " \
         ${sbindir}/ldirectord \
         ${sysconfdir}/ha.d/resource.d/ldirectord \
         ${sysconfdir}/init.d/ldirectord \
         ${sysconfdir}/logrotate.d/ldirectord \
         ${libdir}/ocf/resource.d/heartbeat/ldirectord \
         "
-FILES_ldirectord-doc = "${mandir}/man8/ldirectord.8*"
+FILES:ldirectord-doc = "${mandir}/man8/ldirectord.8*"
 
-RDEPENDS_ldirectord += " \
+RDEPENDS:ldirectord += " \
         ipvsadm \
         libdbi-perl \
         libdigest-hmac-perl \
@@ -102,9 +102,9 @@ RDEPENDS_ldirectord += " \
         "
 
 SYSTEMD_PACKAGES = "ldirectord"
-SYSTEMD_SERVICE_ldirectord += "ldirectord.service"
+SYSTEMD_SERVICE:ldirectord += "ldirectord.service"
 
-FILES_${PN} += "${datadir}/cluster/* \
+FILES:${PN} += "${datadir}/cluster/* \
                 ${libdir}/ocf/resource.d/heartbeat/ \
                 ${libdir}/ocf/lib/heartbeat/* \
                 ${libdir}/ocf/resource.d/redhat \
@@ -112,6 +112,6 @@ FILES_${PN} += "${datadir}/cluster/* \
                 ${systemd_unitdir}/system \
                 "
 
-FILES_${PN}-dbg += "${libdir}/ocf/resource.d/heartbeat/.debug \
+FILES:${PN}-dbg += "${libdir}/ocf/resource.d/heartbeat/.debug \
                     ${sbindir}/.debug \
                     ${libexecdir}/heartbeat/.debug "

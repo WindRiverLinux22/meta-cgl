@@ -10,7 +10,7 @@ DEPENDS = "asciidoc-native \
            docbook-xsl-stylesheets-native \
            libxslt-native \
            "
-RDEPENDS_${PN} = "pacemaker python3-lxml python3-parallax gawk bash"
+RDEPENDS:${PN} = "pacemaker python3-lxml python3-parallax gawk bash"
 
 S = "${WORKDIR}/git"
 SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
@@ -28,4 +28,4 @@ export BUILD_SYS
 # network accesses for the dtd and stylesheets
 export SGML_CATALOG_FILES = "${STAGING_DATADIR_NATIVE}/xml/docbook/xsl-stylesheets/catalog.xml"
 
-FILES_${PN} += "${PYTHON_SITEPACKAGES_DIR}/${BPN}"
+FILES:${PN} += "${PYTHON_SITEPACKAGES_DIR}/${BPN}"

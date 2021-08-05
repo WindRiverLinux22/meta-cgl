@@ -32,19 +32,19 @@ SRC_URI[sha256sum] = "f3cc77e28481fd04f62bb3d4bc03104a97dd316c80c0ed04ad7be24b54
 inherit autotools gettext systemd
 
 DEPENDS = "libpcap"
-RDEPENDS_${PN} = "${@bb.utils.contains('DISTRO_FEATURES','systemd','initscripts-functions','',d)}"
+RDEPENDS:${PN} = "${@bb.utils.contains('DISTRO_FEATURES','systemd','initscripts-functions','',d)}"
 
-SYSTEMD_SERVICE_${PN} = "ucarp.service"
+SYSTEMD_SERVICE:${PN} = "ucarp.service"
 SYSTEMD_AUTO_ENABLE = "disable"
 export FETCHCMD_wget = "/usr/bin/env wget --secure-protocol=TLSv1_2 -t 2 -T 30 --passive-ftp --no-check-certificate"
 EXTRA_OECONF += "--sysconfdir=${sysconfdir}/${BPN}"
 
 # fix the perms for config.rpath
-do_configure_prepend() {
+do_configure:prepend() {
     chmod 755 ${S}/config.rpath
 }
 
-do_install_append() {
+do_install:append() {
     sed -i -e 's#\(UPSCRIPT=\).*#\1${libexecdir}/vip-up.sh#' \
            -e 's#\(DOWNSCRIPT=\).*#\1${libexecdir}/vip-down.sh#' ${WORKDIR}/ucarp.init
 

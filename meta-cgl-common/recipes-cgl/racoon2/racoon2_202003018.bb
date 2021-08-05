@@ -8,7 +8,7 @@ FreeBSD, NetBSD, Linux, and Mac OS X."
 HOMEPAGE = "http://ftp.racoon2.wide.ad.jp/pub/racoon2/"
 
 DEPENDS = "${@bb.utils.contains('DISTRO_FEATURES', 'krb5', 'krb5', '', d)} libpcap openssl bison flex-native util-linux bison-native"
-RDEPENDS_${PN} += "perl"
+RDEPENDS:${PN} += "perl"
 
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=99a60756441098855c538fe86f859afe"
@@ -49,11 +49,11 @@ EXTRA_OECONF += "--sysconfdir=${sysconfdir}/${BPN} \
                  --with-kernel-build-dir=${STAGING_INCDIR}"
 CLEANBROKEN = "1"
 
-do_configure_prepend () {
+do_configure:prepend () {
     mkdir -p lib/m4 spmd/m4 iked/m4 kinkd/m4
 }
 
-do_install_append() {
+do_install:append() {
     install -d -m 0755 ${D}${sysconfdir}/init.d/
     cp -rfa ${D}${sysconfdir}/${BPN}/init.d/* ${D}${sysconfdir}/init.d/
 
@@ -80,19 +80,19 @@ do_install_append() {
 }
 
 INITSCRIPT_PACKAGES = "${PN} ${PN}-iked ${PN}-${@bb.utils.contains('DISTRO_FEATURES', 'krb5', 'kinkd', '', d)}"
-INITSCRIPT_NAME_${PN} = "spmd"
-INITSCRIPT_PARAMS_${PN} = "remove"
-INITSCRIPT_NAME_${PN}-iked = "iked"
-INITSCRIPT_PARAMS_${PN}-iked = "remove"
-INITSCRIPT_NAME_${PN}-kinkd = "kinkd"
-INITSCRIPT_PARAMS_${PN}-kinkd= "remove"
+INITSCRIPT_NAME:${PN} = "spmd"
+INITSCRIPT_PARAMS:${PN} = "remove"
+INITSCRIPT_NAME:${PN}-iked = "iked"
+INITSCRIPT_PARAMS:${PN}-iked = "remove"
+INITSCRIPT_NAME:${PN}-kinkd = "kinkd"
+INITSCRIPT_PARAMS:${PN}-kinkd= "remove"
 
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "spmd.service iked.service"
+SYSTEMD_SERVICE:${PN} = "spmd.service iked.service"
 SYSTEMD_AUTO_ENABLE = "disable"
 
 
-pkg_postinst_${PN} () {
+pkg_postinst:${PN} () {
     if [ -z "$D" ]; then
         if [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
             ${sysconfdir}/init.d/populate-volatile.sh update

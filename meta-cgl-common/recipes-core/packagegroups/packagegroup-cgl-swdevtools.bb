@@ -10,9 +10,9 @@ inherit packagegroup
 PACKAGES = "packagegroup-cgl-swdevtools"
 
 NUMACTL = "numactl"
-NUMACTL_arm = ""
+NUMACTL:arm = ""
 
-RDEPENDS_packagegroup-cgl-swdevtools = " \
+RDEPENDS:packagegroup-cgl-swdevtools = " \
     libuio \
     libcap-ng \
     libwww-perl \
@@ -23,4 +23,4 @@ RDEPENDS_packagegroup-cgl-swdevtools = " \
     ${NUMACTL} \
     "
 
-RRECOMMENDS_packagegroup-cgl-swdevtools = ""
+RRECOMMENDS:packagegroup-cgl-swdevtools = ""

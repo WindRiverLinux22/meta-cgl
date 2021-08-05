@@ -10,11 +10,11 @@ python () {
 }
       
 VALGRIND ?= ""
-VALGRIND_powerpc ?= "valgrind"
+VALGRIND:powerpc ?= "valgrind"
 VALGRIND_e500v2 ?= ""
-VALGRIND_x86 ?= "valgrind"
-VALGRIND_x86_64 ?= "valgrind"
-VALGRIND_armv7a ?= "valgrind"
+VALGRIND:x86 ?= "valgrind"
+VALGRIND:x86_64 ?= "valgrind"
+VALGRIND:armv7a ?= "valgrind"
 
 # Include modules in rootfs
 IMAGE_INSTALL += "\
@@ -30,7 +30,7 @@ IMAGE_INSTALL += "\
 IMAGE_FSTYPES += " ext3.gz"
 
 # kexec-tools doesn't work on Mips
-KEXECTOOLS_mips ?= ""
-KEXECTOOLS_mipsel ?= ""
+KEXECTOOLS:mips ?= ""
+KEXECTOOLS:mipsel ?= ""
 
 IMAGE_FEATURES += "tools-debug tools-profile"

@@ -10,6 +10,6 @@ do_install() {
 
 inherit allarch
 
-RDEPENDS_${PN} += "multipath-tools kpartx iscsi-initiator-utils"
+RDEPENDS:${PN} += "multipath-tools kpartx iscsi-initiator-utils"
 
-FILES_${PN} += " /init "
+FILES:${PN} += " /init "

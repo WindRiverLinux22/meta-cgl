@@ -18,13 +18,13 @@ SRC_URI = " \
     file://volatiles \
     file://tmpfiles \
 "
-SRC_URI_append_libc-uclibc = " file://kill-stack-protector.patch"
+SRC_URI:append_libc-uclibc = " file://kill-stack-protector.patch"
 
 SRCREV = "fd5a3befacd23d056a72cacd2b8ad6bba498e56b"
 
 inherit autotools useradd pkgconfig systemd multilib_script multilib_header
 
-SYSTEMD_SERVICE_${PN} = "logd.service"
+SYSTEMD_SERVICE:${PN} = "logd.service"
 SYSTEMD_AUTO_ENABLE = "disable"
 
 HA_USER = "hacluster"
@@ -47,18 +47,18 @@ CACHED_CONFIGUREVARS="ac_cv_path_XML2CONFIG=0 \
 "
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "--home-dir=${localstatedir}/lib/heartbeat/cores/${HA_USER} \
+USERADD_PARAM:${PN} = "--home-dir=${localstatedir}/lib/heartbeat/cores/${HA_USER} \
                        -g ${HA_GROUP} -r -s ${sbindir}/nologin -c 'cluster user' ${HA_USER} \
                       "
-GROUPADD_PARAM_${PN} = "-r ${HA_GROUP}"
+GROUPADD_PARAM:${PN} = "-r ${HA_GROUP}"
 
 MULTILIB_SCRIPTS = "${PN}:${sbindir}/cibsecret"
 
-do_configure_prepend() {
+do_configure:prepend() {
     ln -sf ${PKG_CONFIG_SYSROOT_DIR}/usr/include/libxml2/libxml ${PKG_CONFIG_SYSROOT_DIR}/usr/include/libxml
 }
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}${sysconfdir}/default/volatiles
 	install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/04_cluster-glue
 	install -d ${D}${sysconfdir}/tmpfiles.d
@@ -67,7 +67,7 @@ do_install_append() {
     oe_multilib_header heartbeat/glue_config.h
 }
 
-pkg_postinst_${PN} () {
+pkg_postinst:${PN} () {
 	if [ -z "$D" ]; then
 		if type systemd-tmpfiles >/dev/null; then
 			systemd-tmpfiles --create
@@ -99,7 +99,7 @@ PACKAGES =+ "\
      ${PN}-plugin-compress-staticdev \
 	 "
 
-FILES_${PN} = "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir} ${datadir}/cluster-glue/*sh ${datadir}/cluster-glue/*pl\
+FILES:${PN} = "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir} ${datadir}/cluster-glue/*sh ${datadir}/cluster-glue/*pl\
 	${libdir}/heartbeat/transient-test.sh \
 	${libdir}/heartbeat/logtest \
 	${libdir}/heartbeat/ipctransientserver \
@@ -111,40 +111,40 @@ FILES_${PN} = "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir} ${datadir}/clus
 	${systemd_unitdir} \
 	"
 
-FILES_${PN}-dbg += "${libdir}/heartbeat/.debug/ \
+FILES:${PN}-dbg += "${libdir}/heartbeat/.debug/ \
                     ${sbindir}/.debug/ \
                     ${libdir}/.debug/ \
                    "
 
-FILES_${PN}-plugin-compress = "${libdir}/heartbeat/plugins/compress/*.so"
-FILES_${PN}-plugin-compress-staticdev = "${libdir}/heartbeat/plugins/compress/*.*a"
-FILES_${PN}-plugin-compress-dbg = "${libdir}/heartbeat/plugins/compress/.debug/"
+FILES:${PN}-plugin-compress = "${libdir}/heartbeat/plugins/compress/*.so"
+FILES:${PN}-plugin-compress-staticdev = "${libdir}/heartbeat/plugins/compress/*.*a"
+FILES:${PN}-plugin-compress-dbg = "${libdir}/heartbeat/plugins/compress/.debug/"
 
-FILES_${PN}-plugin-test = "${libdir}/heartbeat/plugins/test/test.so"
-FILES_${PN}-plugin-test-staticdev = "${libdir}/heartbeat/plugins/test/test.*a"
-FILES_${PN}-plugin-test-dbg = "${libdir}/heartbeat/plugins/test/.debug/"
-FILES_${PN}-plugin-stonith2 = " \
+FILES:${PN}-plugin-test = "${libdir}/heartbeat/plugins/test/test.so"
+FILES:${PN}-plugin-test-staticdev = "${libdir}/heartbeat/plugins/test/test.*a"
+FILES:${PN}-plugin-test-dbg = "${libdir}/heartbeat/plugins/test/.debug/"
+FILES:${PN}-plugin-stonith2 = " \
 	${libdir}/stonith/plugins/xen0-ha-dom0-stonith-helper \
 	${libdir}/stonith/plugins/stonith2/*.so \
 	"
-FILES_${PN}-plugin-stonith2-ribcl = "${libdir}/stonith/plugins/stonith2/ribcl.py"
+FILES:${PN}-plugin-stonith2-ribcl = "${libdir}/stonith/plugins/stonith2/ribcl.py"
 
-FILES_${PN}-plugin-stonith2-dbg = "${libdir}/stonith/plugins/stonith2/.debug/"
-FILES_${PN}-plugin-stonith2-staticdev = "${libdir}/stonith/plugins/stonith2/*.*a"
+FILES:${PN}-plugin-stonith2-dbg = "${libdir}/stonith/plugins/stonith2/.debug/"
+FILES:${PN}-plugin-stonith2-staticdev = "${libdir}/stonith/plugins/stonith2/*.*a"
 
-FILES_${PN}-plugin-stonith-external = "${libdir}/stonith/plugins/external/"
-FILES_${PN}-plugin-raexec = "${libdir}/heartbeat/plugins/RAExec/*.so"
-FILES_${PN}-plugin-raexec-staticdev = "${libdir}/heartbeat/plugins/RAExec/*.*a"
-FILES_${PN}-plugin-raexec-dbg = "${libdir}/heartbeat/plugins/RAExec/.debug/"
+FILES:${PN}-plugin-stonith-external = "${libdir}/stonith/plugins/external/"
+FILES:${PN}-plugin-raexec = "${libdir}/heartbeat/plugins/RAExec/*.so"
+FILES:${PN}-plugin-raexec-staticdev = "${libdir}/heartbeat/plugins/RAExec/*.*a"
+FILES:${PN}-plugin-raexec-dbg = "${libdir}/heartbeat/plugins/RAExec/.debug/"
 
-FILES_${PN}-plugin-interfacemgr = "${libdir}/heartbeat/plugins/InterfaceMgr/generic.so"
-FILES_${PN}-plugin-interfacemgr-staticdev = "${libdir}/heartbeat/plugins/InterfaceMgr/generic.*a"
-FILES_${PN}-plugin-interfacemgr-dbg = "${libdir}/heartbeat/plugins/InterfaceMgr/.debug/"
+FILES:${PN}-plugin-interfacemgr = "${libdir}/heartbeat/plugins/InterfaceMgr/generic.so"
+FILES:${PN}-plugin-interfacemgr-staticdev = "${libdir}/heartbeat/plugins/InterfaceMgr/generic.*a"
+FILES:${PN}-plugin-interfacemgr-dbg = "${libdir}/heartbeat/plugins/InterfaceMgr/.debug/"
 
-FILES_${PN}-lrmtest = "${datadir}/cluster-glue/lrmtest/"
+FILES:${PN}-lrmtest = "${datadir}/cluster-glue/lrmtest/"
 
-RDEPENDS_${PN} += "perl"
-RDEPENDS_${PN}-plugin-stonith2 += "bash"
-RDEPENDS_${PN}-plugin-stonith-external += "bash python3-core perl"
-RDEPENDS_${PN}-plugin-stonith2-ribcl += "python3-core"
-RDEPENDS_${PN}-lrmtest += "${VIRTUAL-RUNTIME_getopt} ${PN}-plugin-raexec"
+RDEPENDS:${PN} += "perl"
+RDEPENDS:${PN}-plugin-stonith2 += "bash"
+RDEPENDS:${PN}-plugin-stonith-external += "bash python3-core perl"
+RDEPENDS:${PN}-plugin-stonith2-ribcl += "python3-core"
+RDEPENDS:${PN}-lrmtest += "${VIRTUAL-RUNTIME_getopt} ${PN}-plugin-raexec"

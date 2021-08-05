@@ -22,7 +22,7 @@ SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
 
 CFLAGS += "-I${STAGING_INCDIR}/heartbeat"
 CPPFLAGS +="-I${STAGING_INCDIR}/heartbeat"
-SRC_URI_append_libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc.patch"
+SRC_URI:append:libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc.patch"
 
 SRCREV = "ba59be71228fed04f78ab374dfac748d314d0e89"
 
@@ -49,7 +49,7 @@ EXTRA_OECONF += "STAGING_INCDIR=${STAGING_INCDIR} \
 CACHED_CONFIGUREVARS += " \
     ac_cv_path_BASH_PATH=/bin/bash \
 "
-do_configure_prepend() {
+do_configure:prepend() {
     # remove buildpath
     placeh="abs_top_builddir abs_top_srcdir"
     for ph in $placeh
@@ -62,7 +62,7 @@ do_configure_prepend() {
     done
 }
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${sysconfdir}/default
     install -d ${D}${sysconfdir}/default/volatiles
     install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/06_${BPN}
@@ -86,11 +86,11 @@ do_install_append() {
     done
 }
 
-PACKAGES_prepend = "${PN}-cli-utils ${PN}-libs ${PN}-cluster-libs ${PN}-remote "
+PACKAGES:prepend = "${PN}-cli-utils ${PN}-libs ${PN}-cluster-libs ${PN}-remote "
 
-FILES_${PN}-cli-utils = "${sbindir}/crm* ${sbindir}/iso8601"
-RDEPENDS_${PN}-cli-utils += "libqb bash"
-FILES_${PN}-libs = "${libdir}/libcib.so.* \
+FILES:${PN}-cli-utils = "${sbindir}/crm* ${sbindir}/iso8601"
+RDEPENDS:${PN}-cli-utils += "libqb bash"
+FILES:${PN}-libs = "${libdir}/libcib.so.* \
                     ${libdir}/liblrmd.so.* \
                     ${libdir}/libcrmservice.so.* \
                     ${libdir}/libcrmcommon.so.* \
@@ -100,29 +100,29 @@ FILES_${PN}-libs = "${libdir}/libcib.so.* \
                     ${libdir}/libstonithd.so.* \
                     ${libdir}/libtransitioner.so.* \
                    "
-RDEPENDS_${PN}-libs += "libqb dbus-lib"
-FILES_${PN}-cluster-libs = "${libdir}/libcrmcluster.so.*"
-RDEPENDS_${PN}-cluster-libs += "libqb"
-FILES_${PN}-remote = "${sysconfdir}/init.d/pacemaker_remote \
+RDEPENDS:${PN}-libs += "libqb dbus-lib"
+FILES:${PN}-cluster-libs = "${libdir}/libcrmcluster.so.*"
+RDEPENDS:${PN}-cluster-libs += "libqb"
+FILES:${PN}-remote = "${sysconfdir}/init.d/pacemaker_remote \
                       ${sbindir}/pacemaker_remoted \
                       ${libdir}/ocf/resource.d/pacemaker/remote \
                      "
-RDEPENDS_${PN}-remote += "libqb bash"
-FILES_${PN} += " ${datadir}/snmp                             \
+RDEPENDS:${PN}-remote += "libqb bash"
+FILES:${PN} += " ${datadir}/snmp                             \
                  ${libdir}/corosync/lcrso/pacemaker.lcrso    \
                  ${libdir}/${PYTHON_DIR}/dist-packages/cts/  \
                  ${libdir}/ocf/resource.d/ \
                  ${libdir}/${PYTHON_DIR}/site-packages/cts/ \
                "
-FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
-RDEPENDS_${PN} = "bash python3-core perl libqb ${PN}-cli-utils"
+FILES:${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
+RDEPENDS:${PN} = "bash python3-core perl libqb ${PN}-cli-utils"
 
 SYSTEMD_AUTO_ENABLE = "disable"
 
 SYSTEMD_PACKAGES += "${PN}-remote"
-SYSTEMD_SERVICE_${PN} += "pacemaker.service crm_mon.service"
-SYSTEMD_SERVICE_${PN}-remote += "pacemaker_remote.service"
+SYSTEMD_SERVICE:${PN} += "pacemaker.service crm_mon.service"
+SYSTEMD_SERVICE:${PN}-remote += "pacemaker_remote.service"
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "-r -g haclient -s ${base_sbindir}/nologin hacluster"
-GROUPADD_PARAM_${PN} = "-r haclient"
+USERADD_PARAM:${PN} = "-r -g haclient -s ${base_sbindir}/nologin hacluster"
+GROUPADD_PARAM:${PN} = "-r haclient"

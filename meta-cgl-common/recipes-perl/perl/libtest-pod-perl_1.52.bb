@@ -4,7 +4,7 @@ LICENSE = "Artistic-1.0 | GPL-1.0+"
 LIC_FILES_CHKSUM = "file://README;beginline=26;md5=ea81140c3f3b2937c6490fc732471cd0"
 HOMEPAGE = "https://github.com/perl-pod/test-pod/"
 BBCLASSEXTEND = "native"
-RDEPENDS_${PN} += " perl-module-test-more \
+RDEPENDS:${PN} += " perl-module-test-more \
                     perl-module-file-spec \
                     perl-module-pod-simple \
                     perl-module-test-builder-tester \
