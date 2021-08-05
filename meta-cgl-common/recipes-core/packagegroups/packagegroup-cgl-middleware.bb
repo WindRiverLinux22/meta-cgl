@@ -10,11 +10,8 @@ inherit packagegroup
 PACKAGES = "packagegroup-cgl-middleware"
 
 DHCP = " \
-    dhcp-server \
-    dhcp-server-config \
-    dhcp-client \
-    dhcp-relay \
-    dhcp-omshell \
+    dhcpcd \
+    kea \
     "
 
 MULTIPATH_TOOLS = " \
@@ -41,7 +38,7 @@ RDEPENDS:packagegroup-cgl-middleware = "\
     strongswan \
     vlan \
     corosync \
- ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "iscsi-initiator-utils", "",d)} \
+    ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "iscsi-initiator-utils", "", d)} \
     openipmi \
     openhpi \
     pacemaker \
