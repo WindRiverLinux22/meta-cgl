@@ -20,6 +20,8 @@ SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
 
 SRCREV = "00ec69054edecd068deda54c6184c0385d90ebd2"
 
+UPSTREAM_CHECK_GITTAGREGEX = "(?P<pver>(\d+(\.\d+)+))$"
+
 inherit autotools-brokensep setuptools3
 
 export HOST_SYS
