@@ -15,6 +15,7 @@ RDEPENDS:${PN} = "pacemaker python3-lxml python3-parallax gawk bash python3-doct
 S = "${WORKDIR}/git"
 SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
            file://tweaks_for_build.patch \
+           file://0001-orderedset.py-fix-deprecation-on-collections.Mutable.patch \
           "
 
 SRCREV = "00ec69054edecd068deda54c6184c0385d90ebd2"

@@ -1,0 +1,52 @@
+From c1356d64086d2e3f9d113f346a14e6dff1c2acb0 Mon Sep 17 00:00:00 2001
+From: Yi Zhao <yi.zhao@windriver.com>
+Date: Tue, 26 Oct 2021 14:01:09 +0800
+Subject: [PATCH] orderedset.py: fix deprecation on collections.MutableSet
+
+Python 3.10 removes the deprecated aliases to collections abstract
+base clases [1]. Using 'collections.abc.MutableSet' instead of
+'collections.MutableSet'
+
+[1]: https://bugs.python.org/issue37324
+
+Fixes:
+$ crm
+Traceback (most recent call last):
+  File "/usr/bin/crm", line 29, in <module>
+    from crmsh import main
+  File "/usr/lib64/python3.10/site-packages/crmsh/main.py", line 18, in <module>
+    from . import ui_root
+  File "/usr/lib64/python3.10/site-packages/crmsh/ui_root.py", line 23, in <module>
+    from . import ui_cib
+  File "/usr/lib64/python3.10/site-packages/crmsh/ui_cib.py", line 16, in <module>
+    from .cibconfig import cib_factory
+  File "/usr/lib64/python3.10/site-packages/crmsh/cibconfig.py", line 23, in <module>
+    from . import orderedset
+  File "/usr/lib64/python3.10/site-packages/crmsh/orderedset.py", line 29, in <module>
+    class OrderedSet(collections.MutableSet):
+AttributeError: module 'collections' has no attribute 'MutableSet'
+
+Upstream-Status: Submitted
+[https://github.com/ClusterLabs/crmsh/pull/882]
+
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ crmsh/orderedset.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/crmsh/orderedset.py b/crmsh/orderedset.py
+index 21ec480c..27233289 100644
+--- a/crmsh/orderedset.py
++++ b/crmsh/orderedset.py
+@@ -26,7 +26,7 @@ import collections
+ KEY, PREV, NEXT = list(range(3))
+ 
+ 
+-class OrderedSet(collections.MutableSet):
++class OrderedSet(collections.abc.MutableSet):
+ 
+     def __init__(self, iterable=None):
+         self.end = end = []
+-- 
+2.25.1
+
