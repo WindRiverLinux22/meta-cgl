@@ -59,7 +59,10 @@ EXTRA_OECONF += "--disable-fatal-warnings \
                  --with-rsctmpdir=/var/run/heartbeat/rsctmp"
 
 do_install:append() {
-    rm -rf "${D}${localstatedir}/run"
+    # Remove /var/log/cluster. /var/log is normally a link to /var/volatile/log
+    # and /var/volatile is a tmpfs mount. So anything created in /var/log
+    # will not be available when the tmpfs is mounted.
+    rm -rf ${D}${localstatedir}/run ${D}${localstatedir}/log
     rmdir --ignore-fail-on-non-empty "${D}${localstatedir}"
 }
 
