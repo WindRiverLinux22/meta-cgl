@@ -22,6 +22,8 @@ SRC_URI:append_libc-uclibc = " file://kill-stack-protector.patch"
 
 SRCREV = "fd5a3befacd23d056a72cacd2b8ad6bba498e56b"
 
+UPSTREAM_CHECK_GITTAGREGEX = "glue-(?P<pver>\d+(\.\d+)+)"
+
 inherit autotools useradd pkgconfig systemd multilib_script multilib_header
 
 SYSTEMD_SERVICE:${PN} = "logd.service"
