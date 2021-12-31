@@ -22,6 +22,9 @@ SRC_URI = "git://github.com/markfasheh/ocfs2-tools;branch=master;protocol=https 
     file://0001-o2cb.init.sh-Remove-unneeded-lib-lsb-init-functions.patch \
 "
 SRCREV = "4d76ceb4aa7aaa1fd595368089e99575d708f719"
+
+UPSTREAM_CHECK_GITTAGREGEX = "ocfs2-tools-(?P<pver>\d+(\.\d+)+)"
+
 S = "${WORKDIR}/git"
 
 inherit autotools-brokensep pkgconfig systemd
