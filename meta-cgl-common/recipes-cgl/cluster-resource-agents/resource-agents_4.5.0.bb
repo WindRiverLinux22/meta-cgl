@@ -24,6 +24,8 @@ SRC_URI = "git://github.com/ClusterLabs/resource-agents;branch=main;protocol=htt
 
 SRCREV = "fee181320547365d7f8c88cca2b32801412b933d" 
 
+UPSTREAM_CHECK_GITTAGREGEX = "v(?P<pver>\d+(\.\d+)+)"
+
 S="${WORKDIR}/git"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
