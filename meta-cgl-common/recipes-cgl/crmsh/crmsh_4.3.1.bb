@@ -31,4 +31,6 @@ export BUILD_SYS
 # network accesses for the dtd and stylesheets
 export SGML_CATALOG_FILES = "${STAGING_DATADIR_NATIVE}/xml/docbook/xsl-stylesheets/catalog.xml"
 
+PIP_INSTALL_PACKAGE = "crmsh"
+
 FILES:${PN} += "${PYTHON_SITEPACKAGES_DIR}/${BPN}"
