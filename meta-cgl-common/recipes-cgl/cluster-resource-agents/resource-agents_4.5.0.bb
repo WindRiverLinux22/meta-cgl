@@ -4,15 +4,15 @@ to operate in a High Availability environment for both Pacemaker and \
 rgmanager service managers."
 HOMEPAGE = "http://sources.redhat.com/cluster/wiki/"
 
-LICENSE = "GPLv2+ & LGPLv2+ & GPLv3"
-LICENSE:${PN} = "GPLv2+ & LGPLv2+"
-LICENSE:${PN}-dev = "GPLv2+ & LGPLv2+"
-LICENSE:${PN}-staticdev = "GPLv2+ & LGPLv2+"
-LICENSE:${PN}-dbg = "GPLv2+ & LGPLv2+"
-LICENSE:${PN}-doc = "GPLv2+ & LGPLv2+"
-LICENSE:${PN}-extra = "GPLv3"
-LICENSE:${PN}-extra-dbg = "GPLv3"
-LICENSE:ldirectord = "GPLv2+"
+LICENSE = "GPL-2.0-or-later & LGPL-2.0-or-later & GPL-3.0-only"
+LICENSE:${PN} = "GPL-2.0-or-later & LGPL-2.0-or-later"
+LICENSE:${PN}-dev = "GPL-2.0-or-later & LGPL-2.0-or-later"
+LICENSE:${PN}-staticdev = "GPL-2.0-or-later & LGPL-2.0-or-later"
+LICENSE:${PN}-dbg = "GPL-2.0-or-later & LGPL-2.0-or-later"
+LICENSE:${PN}-doc = "GPL-2.0-or-later & LGPL-2.0-or-later"
+LICENSE:${PN}-extra = "GPL-3.0-only"
+LICENSE:${PN}-extra-dbg = "GPL-3.0-only"
+LICENSE:ldirectord = "GPL-2.0-or-later"
 
 SRC_URI = "git://github.com/ClusterLabs/resource-agents;branch=main;protocol=https \
            file://01-disable-doc-build.patch \
