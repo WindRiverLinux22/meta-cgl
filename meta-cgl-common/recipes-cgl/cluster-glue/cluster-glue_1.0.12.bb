@@ -3,7 +3,7 @@ the Heartbeat/Pacemaker cluster stack. In essence, Glue is everything that \
 is not the cluster messaging layer (Heartbeat), nor the cluster resource manager \
 (Pacemaker), nor a Resource Agent."
 HOMEPAGE = "http://clusterlabs.org/"
-LICENSE = "GPLv2 & LGPLv2.1"
+LICENSE = "GPL-2.0-only & LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b70d30a00a451e19d7449d7465d02601 \
                     file://COPYING.LIB;md5=c386bfabdebabbdc1f28e9fde4f4df6d \
 "
