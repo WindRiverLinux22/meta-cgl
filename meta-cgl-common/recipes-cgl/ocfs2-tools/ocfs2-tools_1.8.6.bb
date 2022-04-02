@@ -9,7 +9,7 @@ technologies, such as JBD - the same journaling subsystem in use by \
 ext3."
 HOMEPAGE = "http://oss.oracle.com/projects/ocfs2-tools/"
 SECTION = "System Environment/Base"
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ef380476f642c20ebf40fecb0add2ec"
 
 SRC_URI = "git://github.com/markfasheh/ocfs2-tools;branch=master;protocol=https \
