@@ -1,7 +1,7 @@
 DESCRIPTION = "libwww-perl provides a simple and consistent API to the World Wide Web"
 HOMEPAGE = "https://metacpan.org/release/libwww-perl"
 SECTION = "libs"
-LICENSE = "Artistic-1.0 | GPL-1.0+"
+LICENSE = "Artistic-1.0 | GPL-1.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=225d44a95fa3addb1da6d91187ab189f"
 DEPENDS = "liburi-perl-native libhtml-parser-perl-native libhtml-tagset-perl-native"
 RDEPENDS:${PN} += " \
