@@ -1,7 +1,7 @@
 DESCRIPTION = "MailTools is a set of Perl modules related to mail applications"
 HOMEPAGE = "http://search.cpan.org/dist/MailTools/"
 SECTION = "libs"
-LICENSE = "Artistic-1.0 | GPL-1.0+"
+LICENSE = "Artistic-1.0 | GPL-1.0-or-later"
 LIC_FILES_CHKSUM = "file://lib/Mail/Mailer.pod;beginline=150;md5=641bd171b1aaabba1fc83ac0a98a2d30"
 DEPENDS = " \
 	libtest-pod-perl-native \
