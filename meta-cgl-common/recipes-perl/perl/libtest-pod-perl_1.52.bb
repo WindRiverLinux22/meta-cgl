@@ -1,6 +1,6 @@
 DESCRIPTION = "Test::Pod - check for POD errors in files"
 SECTION = "libs"
-LICENSE = "Artistic-1.0 | GPL-1.0+"
+LICENSE = "Artistic-1.0 | GPL-1.0-or-later"
 LIC_FILES_CHKSUM = "file://README;beginline=26;md5=ea81140c3f3b2937c6490fc732471cd0"
 HOMEPAGE = "https://github.com/perl-pod/test-pod/"
 BBCLASSEXTEND = "native"
