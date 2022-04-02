@@ -8,7 +8,7 @@ when related resources fail and can be configured to periodically \
 check resource health."
 HOMEPAGE = "http://www.clusterlabs.org"
 
-LICENSE = "GPLv2+ & LGPLv2.1+"
+LICENSE = "GPL-2.0-or-later & LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=000212f361a81b100d9d0f0435040663"
 
 DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python3-native"
