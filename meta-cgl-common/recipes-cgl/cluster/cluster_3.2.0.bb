@@ -10,7 +10,7 @@ SRC_URI = "https://releases.pagure.org/linux-cluster/cluster/${BP}.tar.xz \
 SRC_URI[md5sum] = "300d83dbbc525c3da21c2e961271c84b"
 SRC_URI[sha256sum] = "4d340338c2376d369cb223469fa1a3356cce9ab5b2a0a0a33256ade2dbbe02d1"
 
-LICENSE = "GPL-2.0 & LGPL-2.0"
+LICENSE = "GPL-2.0-only & LGPL-2.0-only"
 LIC_FILES_CHKSUM = "file://doc/README.licence;md5=ee8ae43af5ea09f12ca7f7a649764cb0"
 
 PR = "r1"
