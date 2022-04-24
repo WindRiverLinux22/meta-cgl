@@ -200,8 +200,8 @@ else
 #            echo "*** Info: Inheriting  distrodata."
 #        fi
 
-#        echo -e '\nLICENSE_FLAGS_WHITELIST += "non-commercial"\n' >> conf/local.conf
-#        echo "*** Info: Need to set LICENSE_FLAGS_WHITELIST for netperf"
+#        echo -e '\nLICENSE_FLAGS_ACCEPTED += "non-commercial"\n' >> conf/local.conf
+#        echo "*** Info: Need to set LICENSE_FLAGS_ACCEPTED for netperf"
 
          if [[ -n $DISTRO ]]; then
             sed -i -e "s|^DISTRO.*|DISTRO ?= \"$DISTRO\"|" conf/local.conf
